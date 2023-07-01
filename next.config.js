@@ -4,6 +4,7 @@ const nextConfig = {
     //     locales: ['en', 'pl'],
     //     defaultLocale: 'en',
     // },
+    output: 'export',
     experimental: {
         mdxRs: true,
     },

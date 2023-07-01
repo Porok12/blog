@@ -9,7 +9,7 @@ const Button = () => {
     const currentTheme = theme === 'system' ? systemTheme : theme;
 
     const toggle = () => theme == "dark" ? setTheme('light') : setTheme("dark");
-    const [enabled, setEnabled] = useState(currentTheme == 'dark');
+    const [enabled, setEnabled] = useState(currentTheme != 'dark');
 
     useEffect(() => {
         toggle();
