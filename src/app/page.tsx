@@ -1,26 +1,15 @@
 import fs from "fs";
 import path from "path";
 import React from "react";
-import {NextPage} from 'next'
 import matter from "gray-matter";
 import Post from "@/app/components/Post";
-
-type Props = {
-    articles: any
-}
-
-interface PostData {
-    title: string;
-    date: string;
-    description: string;
-}
 
 async function getData() {
     return [];
 }
 
-const Page: NextPage<Props> = async ({articles}) => {
-    const data = await getData()
+const Page = async () => {
+    const data = await getData();
 
     return (
         <div className="py-24 sm:py-32">
