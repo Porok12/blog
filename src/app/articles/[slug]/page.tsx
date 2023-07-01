@@ -15,13 +15,21 @@ interface Props {
 }
 
 const getPost = async (slug: string) => {
-    const pathToPosts = path.join("src", "app", "posts");
-    const fileContents = fs.readFileSync(path.join(pathToPosts, `${slug}.mdx`), "utf8");
-    const {data, content} = matter(fileContents);
-    return {
-        data,
-        content,
-    };
+    try {
+        const pathToPosts = path.join("src", "app", "posts");
+        const fileContents = fs.readFileSync(path.join(pathToPosts, `${slug}.mdx`), "utf8");
+        const {data, content} = matter(fileContents);
+        return {
+            data,
+            content,
+        };
+    } catch (e) {
+        console.error(e);
+        return {
+            data: {},
+            content: '',
+        }
+    }
 };
 
 const getData = async (slug: string) => {
