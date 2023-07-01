@@ -5,7 +5,21 @@ import matter from "gray-matter";
 import Post from "@/app/components/Post";
 
 async function getData() {
-    return [];
+    const pathToPosts = path.join("src", "app", "posts");
+    const posts = fs.readdirSync(pathToPosts);
+    return posts.filter(fileName => {
+        const filePath = path.join(pathToPosts, fileName);
+        return !fs.lstatSync(filePath).isDirectory();
+    }).map(fileName => {
+        const slug = fileName.replace(".mdx", "");
+        const filePath = path.join(pathToPosts, fileName);
+        const fileContents = fs.readFileSync(filePath, "utf-8");
+        const {data} = matter(fileContents);
+        return {
+            slug,
+            data,
+        }
+    });
 }
 
 const Page = async () => {
