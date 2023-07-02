@@ -11,6 +11,7 @@ import {MetaPost} from "@/app/components/Post";
 import remarkGfm from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import rehypeHighlight from 'rehype-highlight';
+import {Components} from "@mdx-js/react/lib";
 import scala from 'highlight.js/lib/languages/scala';
 import "@/styles/highlight-js/github-dark.css";
 
@@ -59,7 +60,7 @@ const getData = async (slug: string) => {
     }
 }
 
-const components = {
+const components: Components = {
     img: (props: any) => (
         // height and width are part of the props, so they get automatically passed here with {...props}
         <Image {...props} fill="responsive" loading="lazy" alt="..."/>
@@ -83,7 +84,7 @@ const Page: NextPage<Props> = async ({params}) => {
                     components={components}
                     options={{mdxOptions: {
                         remarkPlugins: [remarkGfm, remarkEmoji],
-                        rehypePlugins: [[rehypeHighlight, { languages: { scala }, subset: ['java', 'python'] }]],
+                        rehypePlugins: [[rehypeHighlight, { languages: { scala }, subset: ['java', 'python'], ignoreMissing: true }]],
                         /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
                     }}}
                 />
