@@ -60,8 +60,6 @@ jobs:
         run: npx next build
       - name: Static HTML export with Next.js
         run: npx next export
-      - name: Don't use Jekyll
-        run: touch out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
