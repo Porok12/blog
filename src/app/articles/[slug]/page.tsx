@@ -8,7 +8,11 @@ import matter from "gray-matter";
 import {MDXRemote} from "next-mdx-remote/rsc";
 import {MetaPost} from "@/app/components/Post";
 // import rehypeImageSize from "rehype-img-size";
-
+import remarkGfm from 'remark-gfm';
+import remarkEmoji from 'remark-emoji';
+import rehypeHighlight from 'rehype-highlight';
+import scala from 'highlight.js/lib/languages/scala';
+import "@/styles/highlight-js/github-dark.css";
 
 export const generateStaticParams = async () => {
     let posts: string[] = [];
@@ -77,7 +81,11 @@ const Page: NextPage<Props> = async ({params}) => {
                 <MDXRemote
                     source={content}
                     components={components}
-                    options={{mdxOptions: {/*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/}}}
+                    options={{mdxOptions: {
+                        remarkPlugins: [remarkGfm, remarkEmoji],
+                        rehypePlugins: [[rehypeHighlight, { languages: { scala }, subset: ['java', 'python'] }]],
+                        /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
+                    }}}
                 />
             </article>
         </div>
