@@ -4,28 +4,23 @@ import React from "react";
 import {NextPage} from "next";
 import Image from "next/image";
 import matter from "gray-matter";
-import {serialize} from "next-mdx-remote/serialize";
+// import {serialize} from "next-mdx-remote/serialize";
 import {MDXRemote} from "next-mdx-remote/rsc";
 // import rehypeImageSize from "rehype-img-size";
 
-interface Props {
-    params: {
-        slug: string
-    }
-}
 
 export const generateStaticParams = async () => {
     let posts: string[] = [];
     try {
         const pathToPosts = path.join("src", "app", "posts");
-        posts = fs.readdirSync(pathToPosts);
-        return posts.filter(fileName => {
-            const filePath = path.join(pathToPosts, fileName);
-            return !fs.lstatSync(filePath).isDirectory();
-        });
+        posts = fs.readdirSync(pathToPosts)
+            .filter(fileName => !fs.lstatSync(path.join(pathToPosts, fileName)).isDirectory())
+            .map(fileName => fileName.replace(".mdx", ""));
     } catch (e) {
         console.error(e);
     }
+
+    console.debug('Generated params for /articles/[slug]' + posts.join(', '))
 
     return posts.map((post) => ({
         slug: post,
@@ -52,7 +47,7 @@ const getPost = async (slug: string) => {
 
 const getData = async (slug: string) => {
     const post = await getPost(slug);
-    const mdxSource = await serialize(post.content);
+    // const mdxSource = await serialize(post.content);
     return {
         data: post.data,
         content: post.content,
@@ -66,13 +61,18 @@ const components = {
     ),
 };
 
+interface Props {
+    params: {
+        slug: string
+    }
+}
+
 const Page: NextPage<Props> = async ({params}) => {
     const {data, content} = await getData(params.slug);
 
     return (
         <div className="py-24 sm:py-32">
             <article className="mx-auto max-w-7xl px-6 lg:px-8 prose dark:prose-invert">
-                {JSON.stringify(data)}
                 <MDXRemote
                     source={content}
                     components={components}
