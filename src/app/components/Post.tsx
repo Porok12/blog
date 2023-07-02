@@ -29,7 +29,7 @@ const Post: NextPage<Props> = (props) => {
                 {categories.map(category => (
                     <Link
                         key={category}
-                        href={`/tags/${slug}`}
+                        href={`/tags/${category}`}
                         className="relative z-10 rounded-full px-3 py-1.5 font-medium bg-gray-100 dark:bg-slate-600 text-gray-600 dark:text-white hover:bg-gray-100"
                     >
                         {category}

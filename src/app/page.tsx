@@ -5,10 +5,22 @@ import matter from "gray-matter";
 import Post, {MetaPost} from "@/app/components/Post";
 
 const getData = async () => {
+    const devto = await fetch("https://dev.to/api/articles?username=porok12")
+        .then(response => response.json())
+        .then(posts => posts.map(({title, description, slug, created_at, tags}: any) => ({
+            slug: slug,
+            data: {
+                title,
+                description,
+                date: created_at,
+                categories: tags,
+            }
+        })));
+
     try {
         const pathToPosts = path.join("src", "app", "posts");
         const posts = fs.readdirSync(pathToPosts);
-        return posts.filter(fileName => {
+        const local = posts.filter(fileName => {
             const filePath = path.join(pathToPosts, fileName);
             return !fs.lstatSync(filePath).isDirectory();
         }).map(fileName => {
@@ -21,6 +33,7 @@ const getData = async () => {
                 data,
             }
         });
+        return [...devto, ...local];
     } catch (e) {
         console.error(e);
         return [];
