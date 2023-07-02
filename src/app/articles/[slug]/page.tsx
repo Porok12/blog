@@ -14,6 +14,24 @@ interface Props {
     }
 }
 
+export const generateStaticParams = async () => {
+    let posts: string[] = [];
+    try {
+        const pathToPosts = path.join("src", "app", "posts");
+        posts = fs.readdirSync(pathToPosts);
+        return posts.filter(fileName => {
+            const filePath = path.join(pathToPosts, fileName);
+            return !fs.lstatSync(filePath).isDirectory();
+        });
+    } catch (e) {
+        console.error(e);
+    }
+
+    return posts.map((post) => ({
+        slug: post,
+    }))
+}
+
 const getPost = async (slug: string) => {
     try {
         const pathToPosts = path.join("src", "app", "posts");
