@@ -6,6 +6,7 @@ import Image from "next/image";
 import matter from "gray-matter";
 // import {serialize} from "next-mdx-remote/serialize";
 import {MDXRemote} from "next-mdx-remote/rsc";
+import {MetaPost} from "@/app/components/Post";
 // import rehypeImageSize from "rehype-img-size";
 
 
@@ -31,7 +32,7 @@ const getPost = async (slug: string) => {
     try {
         const pathToPosts = path.join("src", "app", "posts");
         const fileContents = fs.readFileSync(path.join(pathToPosts, `${slug}.mdx`), "utf8");
-        const {data, content} = matter(fileContents);
+        const {data, content} = matter(fileContents) as unknown as { content: string, data: MetaPost };
         return {
             data,
             content,

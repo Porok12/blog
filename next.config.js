@@ -7,6 +7,7 @@ const nextConfig = {
     output: 'export',
     experimental: {
         mdxRs: true,
+        typedRoutes: true,
     },
 };
 

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 import matter from "gray-matter";
-import Post from "@/app/components/Post";
+import Post, {MetaPost} from "@/app/components/Post";
 
 const getData = async () => {
     try {
@@ -15,7 +15,7 @@ const getData = async () => {
             const slug = fileName.replace(".mdx", "");
             const filePath = path.join(pathToPosts, fileName);
             const fileContents = fs.readFileSync(filePath, "utf-8");
-            const {data} = matter(fileContents);
+            const {data} = matter(fileContents) as unknown as { data: MetaPost };
             return {
                 slug,
                 data,
@@ -43,8 +43,9 @@ const Page = async () => {
                 </div>
 
                 <div
-                    className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    {data.map(({slug, data}) => <Post key={slug} slug={slug} data={data}/>)}
+                    className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+                >
+                    {data.map(({slug, data}) => <Post key={slug} slug={slug} meta={data}/>)}
                 </div>
             </div>
         </div>
