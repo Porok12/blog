@@ -2,6 +2,7 @@
   "name": "dev-blog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://porok12.github.io/personal-blog/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
