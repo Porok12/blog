@@ -2,12 +2,16 @@ const isGithub = process.env.GITHUB === 'true'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    assetPrefix: isGithub ? '/personal-blog' : undefined,
+    basePath: isGithub ? '/personal-blog' : '',
+    // assetPrefix: isGithub ? '/personal-blog' : undefined,
     // i18n: {
     //     locales: ['en', 'pl'],
     //     defaultLocale: 'en',
     // },
     output: 'export',
+    // images: {
+    //   loader: "cloudinary",
+    // },
     experimental: {
         mdxRs: true,
         typedRoutes: true,
