@@ -14,7 +14,7 @@ const nextConfig = {
     // },
     experimental: {
         mdxRs: true,
-        typedRoutes: true,
+        typedRoutes: false,
     },
 };
 
