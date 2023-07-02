@@ -1,5 +1,8 @@
+const isGithub = process.env.GITHUB === 'true'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    assetPrefix: isGithub ? '/personal-blog' : undefined,
     // i18n: {
     //     locales: ['en', 'pl'],
     //     defaultLocale: 'en',
