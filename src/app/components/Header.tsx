@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
 
                 <div className="hidden lg:flex lg:gap-x-12">
-                    <Link href="/" className="text-sm font-semibold leading-6 text-gray-900">
+                    <Link href="/#" className="text-sm font-semibold leading-6 text-gray-900">
                         Posts
                     </Link>
                     <Link href="/tags" className="text-sm font-semibold leading-6 text-gray-900">
