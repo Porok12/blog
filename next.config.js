@@ -16,6 +16,9 @@ const nextConfig = {
         mdxRs: true,
         typedRoutes: true,
     },
+    images: {
+        unoptimized: true
+    }
 };
 
 const withMDX = require('@next/mdx')({

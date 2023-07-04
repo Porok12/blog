@@ -11,6 +11,9 @@ module.exports = {
             fontFamily: {
                 sans: "Segoe UI",
             },
+            colors: {
+                'primary': '#1fb6ff',
+            }
         },
     },
     plugins: [require("@tailwindcss/typography")],

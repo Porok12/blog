@@ -19,10 +19,12 @@ const RootLayout = ({children}: Props) => {
     return (
         <html lang="en">
             <body className={`${inter.className} bg-white dark:bg-slate-800 text-black dark:text-white`}>
-                <Providers>
-                    <Header/>
-                    {children}
-                </Providers>
+                    <Providers>
+                        <Header/>
+                        <div className="container mx-auto">
+                            {children}
+                        </div>
+                    </Providers>
             </body>
         </html>
     )
