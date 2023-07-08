@@ -87,9 +87,9 @@ const Header = () => {
                                     </div>
                                     <div className="hidden sm:ml-6 sm:block flex-grow">
                                         <div className="flex space-x-4 justify-center">
-                                            {/*<div className="text-sm font-semibold leading-6 text-gray-900" />*/}
+                                            {/*<div className="text-sm font-nvmsemibold leading-6 text-gray-900" />*/}
                                             <Link
-                                                href={process.env.GITHUB === 'true' ? "https://porok12.github.io/personal-blog/" : "/"}
+                                                href="/"
                                                 className="btn btn-primary btn-outlined">
                                                 Posts
                                             </Link>

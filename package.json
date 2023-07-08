@@ -13,8 +13,8 @@
     "sync-puml": "java -jar /opt/plantuml.jar -tsvg public/*.puml"
   },
   "engines": {
-    "node": ">=16.0.0 < 18.0.0",
-    "npm": ">=8.0.0 < 9.0.0"
+    "node": ">=18.0.0 < 19.0.0",
+    "npm": ">=9.0.0 < 10.0.0"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
