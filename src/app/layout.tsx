@@ -2,7 +2,9 @@ import React from "react";
 import {Inter} from 'next/font/google'
 import Providers from "@/app/providers";
 import Header from "@/app/components/Header";
-import './globals.css'
+import Footer from "@/app/components/Footer";
+import './globals.css';
+import './button.css';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -18,13 +20,16 @@ interface Props {
 const RootLayout = ({children}: Props) => {
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-white dark:bg-slate-800 text-black dark:text-white`}>
+            <body className={`${inter.className} text-black bg-gray-50 dark:text-white dark:bg-slate-950`}>
+                <div className="h-screen flex flex-col">
                     <Providers>
                         <Header/>
-                        <div className="container mx-auto">
+                        <div className="container mx-auto flex-grow">
                             {children}
                         </div>
+                        <Footer/>
                     </Providers>
+                </div>
             </body>
         </html>
     )

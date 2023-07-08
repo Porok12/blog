@@ -3,6 +3,8 @@
 import React from 'react'
 import {useTheme} from "next-themes";
 import {Switch} from '@headlessui/react';
+import {MoonIcon, SunIcon} from '@heroicons/react/24/outline';
+import IconButton from "@/app/components/IconButton";
 
 const Button = () => {
     const {resolvedTheme, setTheme} = useTheme();
@@ -11,6 +13,19 @@ const Button = () => {
     const toggleTheme = () => {
         lightTheme ? setTheme("dark") : setTheme("light");
     }
+
+    return (
+        <IconButton Icon={lightTheme ? SunIcon : MoonIcon} onClick={toggleTheme} />
+    )
+
+    return (
+        <button
+            onClick={toggleTheme}
+            className="middle none center rounded-full p-2  hover:bg-gray-2'00 dark:hover:bg-slate-600"
+        >
+            {lightTheme ? <SunIcon className="h-6 w-6 text-black" /> : <MoonIcon className="h-6 w-6 text-white" />}
+        </button>
+    );
 
     return (
         <Switch

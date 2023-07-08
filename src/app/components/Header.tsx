@@ -8,6 +8,7 @@ import ThemeMenu from "@/app/components/ThemeMenu";
 
 import {Disclosure, Transition, Menu} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
+import Button from "@/app/components/Button";
 
 function classNames(...classes: string[]): string {
     return classes.filter(Boolean).join(' ');
@@ -66,21 +67,18 @@ const Header = () => {
                                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                     {/* Mobile menu button*/}
                                     <Disclosure.Button
-                                        className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                        className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white">
                                         <span className="sr-only">Open main menu</span>
                                         {open ? (
-                                            <XMarkIcon className="block h-6 w-6" aria-hidden="true"/>
+                                            <XMarkIcon className="block h-6 w-6" />
                                         ) : (
-                                            <Bars3Icon className="block h-6 w-6" aria-hidden="true"/>
+                                            <Bars3Icon className="block h-6 w-6" />
                                         )}
                                     </Disclosure.Button>
                                 </div>
 
                                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                     <div className="flex flex-shrink-0 items-center">
-                                        {/*<a href="#" className="-m-1.5 p-1.5">*/}
-                                        {/*    <span className="sr-only">Your Company</span>*/}
-                                        {/*</a>*/}
                                         <img
                                             className="h-8 w-auto"
                                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -92,17 +90,17 @@ const Header = () => {
                                             {/*<div className="text-sm font-semibold leading-6 text-gray-900" />*/}
                                             <Link
                                                 href={process.env.GITHUB === 'true' ? "https://porok12.github.io/personal-blog/" : "/"}
-                                                className="text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600 rounded-md px-3 py-2 text-sm font-medium">
+                                                className="btn btn-primary btn-outlined">
                                                 Posts
                                             </Link>
                                             <Link
                                                 href="/tags"
-                                                className="text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600 rounded-md px-3 py-2 text-sm font-medium">
+                                                className="btn btn-primary btn-outlined">
                                                 Tags
                                             </Link>
                                             <Link
                                                 href="/about"
-                                                className="text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600 rounded-md px-3 py-2 text-sm font-medium">
+                                                className="btn btn-primary btn-outlined">
                                                 About
                                             </Link>
                                         </div>
@@ -112,7 +110,6 @@ const Header = () => {
 
                                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                     <ToggleTheme />
-                                    {/*<ThemeMenu />*/}
                                 </div>
 
 

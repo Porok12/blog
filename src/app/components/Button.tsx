@@ -1,18 +1,27 @@
+import React, {PropsWithChildren} from "react";
 import {MoonIcon} from "@heroicons/react/24/outline";
-import React from "react";
+import classNames from "@/app/utils/classNames";
 
-interface Props {
+interface Props extends PropsWithChildren {
     active?: boolean;
+    variant?: "outlined" | "solid";
+    fullwidth?: boolean;
+    StartIcon?: any;
+    EndIcon?: any;
 }
 
+const styles = {}
+
 const Button = (props: Props) => {
-    const {active} = props;
+    const {children, fullwidth, StartIcon, EndIcon} = props;
+
+    // group flex w-full items-center
 
     return (
-        <button
-            className={`${active ? 'bg-violet-500 text-white' : 'text-gray-900'} group flex w-full items-center rounded-md px-2 py-2 text-sm`}>
-            <MoonIcon className="mr-2 h-5 w-5"/>
-            Dark
+        <button className={classNames("btn btn-primary",  fullwidth ? "w-full" : "")}>
+            {StartIcon && <StartIcon className="mr-2 h-5 w-5"/> }
+            {children}
+            {EndIcon && <EndIcon className="ml-2 h-5 w-5"/> }
         </button>
     )
 }
