@@ -9,7 +9,8 @@
     "start": "next start",
     "serve": "npx serve@latest out",
     "export": "next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-puml": "java -jar /opt/plantuml.jar -tsvg public/*.puml"
   },
   "engines": {
     "node": ">=16.0.0 < 18.0.0",
@@ -39,7 +40,6 @@
     "react-markdown": "^8.0.7",
     "rehype-highlight": "^6.0.0",
     "rehype-img-size": "^1.0.1",
-    "rehype-mermaidjs": "^1.0.1",
     "remark-emoji": "^3.1.2",
     "remark-gfm": "^3.0.1",
     "typescript": "5.1.6"

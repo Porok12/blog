@@ -8,6 +8,7 @@ const About: NextPage = () => {
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 Przemysław Papla
                 <Card>Hello</Card>
+                <img src="/test.svg" alt="" />
             </div>
         </div>
     )

@@ -15,8 +15,10 @@ const Tags: NextPage = async () => {
     return (
         <div className="py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <h2>Tags</h2>
-                {tags.map(tag => <Chips key={tag}>{tag}</Chips>)}
+                <h2 className="text-3xl tracking-tight">Tags</h2>
+                <div className="mt-4">
+                    {tags.map(tag => <Chips key={tag}>{tag}</Chips>)}
+                </div>
             </div>
         </div>
     )

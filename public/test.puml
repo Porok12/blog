@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+!theme bluegray
+
 autonumber
 
 Alice -> Bob: Authentication Request
