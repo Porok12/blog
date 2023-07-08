@@ -58,13 +58,17 @@ class ArticleLocal implements ArticleApi {
 
 class ArticleDevto implements ArticleApi {
     articles(): Promise<IArticle[]> {
-        return fetch("https://dev.to/api/articles?username=porok12", { next: { revalidate: 0 } })
+        return fetch("https://dev.to/api/articles?username=porok12")
             .then(response => response.json())
     }
 
     article(id: string): Promise<IArticle> {
-        return fetch(`https://dev.to/api/articles/${id}?username=porok12`, { next: { revalidate: 0 } })
+        return fetch(`https://dev.to/api/articles/${id}?username=porok12`)
             .then(response => response.json())
+            .then(response => {
+                console.debug(response);
+                return response;
+            })
     }
 }
 

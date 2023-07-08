@@ -1,10 +1,7 @@
-import fs from "fs";
-import path from "path";
 import React from "react";
 import {NextPage} from "next";
 import Image from "next/image";
-import matter from "gray-matter";
-// import {serialize} from "next-mdx-remote/serialize";
+import {notFound} from 'next/navigation'
 import {MDXRemote} from "next-mdx-remote/rsc";
 // import rehypeImageSize from "rehype-img-size";
 import remarkGfm from 'remark-gfm';
@@ -13,7 +10,7 @@ import rehypeHighlight from 'rehype-highlight';
 import {Components} from "@mdx-js/react/lib";
 import scala from 'highlight.js/lib/languages/scala';
 import "@/styles/highlight-js/github-dark.css";
-import ArticleApi, {IArticle} from "@/api/articles";
+import ArticleApi from "@/api/articles";
 import Border from "@/app/components/Border";
 
 export const generateStaticParams = async () => {
@@ -26,7 +23,7 @@ export const generateStaticParams = async () => {
     // } catch (e) {
     //     console.error(e);
     // }
-    (await ArticleApi.articles()).forEach(article => articles.push(article.id+""));
+    (await ArticleApi.articles()).forEach(article => articles.push(article.id + ""));
 
     console.debug('Generated params for /articles/[slug]: ' + articles.join(', '))
 
@@ -36,9 +33,7 @@ export const generateStaticParams = async () => {
 }
 
 const getData = async (slug: string) => {
-    const post: IArticle = await ArticleApi.article(slug+"");
-    console.debug(slug, post);
-    return post;
+    return await ArticleApi.article(slug + "");
 }
 
 const components: Components = {
@@ -57,23 +52,33 @@ interface Props {
 const Page: NextPage<Props> = async ({params}) => {
     const article = await getData(params.slug);
 
+    if (!article) {
+        notFound();
+    }
+
     return (
         <div className="py-24 sm:py-32">
             <article className="mx-auto max-w-7xl px-6 lg:px-8 prose dark:prose-invert">
                 <time>{new Date(article.created_at).toLocaleDateString()}</time>
                 <h1>{article.title}</h1>
-                <Border />
+                <Border/>
                 <div className="my-16"/>
                 <MDXRemote
                     source={article.body_markdown!}
                     components={components}
-                    options={{mdxOptions: {
-                        remarkPlugins: [remarkGfm, remarkEmoji],
-                        rehypePlugins: [
-                            [rehypeHighlight, { languages: { scala }, subset: ['java', 'python'], ignoreMissing: true }],
-                        ],
-                        /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
-                    }}}
+                    options={{
+                        mdxOptions: {
+                            remarkPlugins: [remarkGfm, remarkEmoji],
+                            rehypePlugins: [
+                                [rehypeHighlight, {
+                                    languages: {scala},
+                                    subset: ['java', 'python'],
+                                    ignoreMissing: true
+                                }],
+                            ],
+                            /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
+                        }
+                    }}
                 />
             </article>
         </div>
