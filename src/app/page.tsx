@@ -2,51 +2,22 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 import matter from "gray-matter";
-import Post, {MetaPost} from "@/app/components/Post";
+import {NextPage} from "next";
+import Article from "@/app/components/Article";
 import Button from "@/app/components/Button";
 import Card from "@/app/components/Card";
 import Border from "@/app/components/Border";
 import Alert from "@/app/components/Alert";
 import Chips from "@/app/components/Chips";
+import ArticleApi, {IArticle} from "@/api/articles";
+
 
 const getData = async () => {
-    const devto = await fetch("https://dev.to/api/articles?username=porok12")
-        .then(response => response.json())
-        .then(posts => posts.map(({title, description, slug, created_at, tags}: any) => ({
-            slug: slug,
-            data: {
-                title,
-                description,
-                date: created_at,
-                categories: tags,
-            }
-        })));
-
-    try {
-        const pathToPosts = path.join("src", "app", "posts");
-        const posts = fs.readdirSync(pathToPosts);
-        const local = posts.filter(fileName => {
-            const filePath = path.join(pathToPosts, fileName);
-            return !fs.lstatSync(filePath).isDirectory();
-        }).map(fileName => {
-            const slug = fileName.replace(".mdx", "");
-            const filePath = path.join(pathToPosts, fileName);
-            const fileContents = fs.readFileSync(filePath, "utf-8");
-            const {data} = matter(fileContents) as unknown as { data: MetaPost };
-            return {
-                slug,
-                data,
-            }
-        });
-        return [...devto, ...local];
-    } catch (e) {
-        console.error(e);
-        return [];
-    }
+    return await ArticleApi.articles();
 }
 
-const Page = async () => {
-    const data = await getData();
+const Page: NextPage = async () => {
+    const articles: IArticle[] = await getData();
 
     return (
         <div className="py-24 sm:py-32">
@@ -59,8 +30,6 @@ const Page = async () => {
                         Hello learn with me awesome things...
                     </p>
                     <Button>Hello</Button>
-                    {/*<Alert>ELo</Alert>*/}
-                    {/*<Chips>Hello</Chips>*/}
                 </div>
 
                 <Border />
@@ -68,7 +37,7 @@ const Page = async () => {
                 <div
                     className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
                 >
-                    {data.map(({slug, data}) => <Post key={slug} slug={slug} meta={data}/>)}
+                    {articles.map((article) => <Article key={article.id} slug={article.id} meta={article}/>)}
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
 export type ArticleType = {
     id: number,
     title: string,
-    "description": string,
-    "slug": string,
+    description: string,
+    slug: string,
     // "path": "/porok12/test-article-1a4l",
     // "url": "https://dev.to/porok12/test-article-1a4l",
     // "published_timestamp": "2023-07-02T10:14:33Z",

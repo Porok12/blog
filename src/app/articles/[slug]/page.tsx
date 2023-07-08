@@ -6,58 +6,39 @@ import Image from "next/image";
 import matter from "gray-matter";
 // import {serialize} from "next-mdx-remote/serialize";
 import {MDXRemote} from "next-mdx-remote/rsc";
-import {MetaPost} from "@/app/components/Post";
 // import rehypeImageSize from "rehype-img-size";
 import remarkGfm from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeMermaid from 'rehype-mermaidjs';
 import {Components} from "@mdx-js/react/lib";
 import scala from 'highlight.js/lib/languages/scala';
 import "@/styles/highlight-js/github-dark.css";
+import ArticleApi, {IArticle} from "@/api/articles";
 
 export const generateStaticParams = async () => {
-    let posts: string[] = [];
-    try {
-        const pathToPosts = path.join("src", "app", "posts");
-        posts = fs.readdirSync(pathToPosts)
-            .filter(fileName => !fs.lstatSync(path.join(pathToPosts, fileName)).isDirectory())
-            .map(fileName => fileName.replace(".mdx", ""));
-    } catch (e) {
-        console.error(e);
-    }
+    let articles: string[] = [];
+    // try {
+    //     const pathToPosts = path.join("src", "app", "posts");
+    //     posts = fs.readdirSync(pathToPosts)
+    //         .filter(fileName => !fs.lstatSync(path.join(pathToPosts, fileName)).isDirectory())
+    //         .map(fileName => fileName.replace(".mdx", ""));
+    // } catch (e) {
+    //     console.error(e);
+    // }
+    (await ArticleApi.articles()).forEach(article => articles.push(article.id+""));
 
-    console.debug('Generated params for /articles/[slug]' + posts.join(', '))
+    console.debug('Generated params for /articles/[slug]: ' + articles.join(', '))
 
-    return posts.map((post) => ({
-        slug: post,
+    return articles.map((article) => ({
+        slug: article,
     }))
 }
 
-const getPost = async (slug: string) => {
-    try {
-        const pathToPosts = path.join("src", "app", "posts");
-        const fileContents = fs.readFileSync(path.join(pathToPosts, `${slug}.mdx`), "utf8");
-        const {data, content} = matter(fileContents) as unknown as { content: string, data: MetaPost };
-        return {
-            data,
-            content,
-        };
-    } catch (e) {
-        console.error(e);
-        return {
-            data: {},
-            content: '',
-        }
-    }
-};
-
 const getData = async (slug: string) => {
-    const post = await getPost(slug);
-    // const mdxSource = await serialize(post.content);
-    return {
-        data: post.data,
-        content: post.content,
-    }
+    const post: IArticle = await ArticleApi.article(slug+"");
+    console.debug(slug, post);
+    return post;
 }
 
 const components: Components = {
@@ -74,17 +55,17 @@ interface Props {
 }
 
 const Page: NextPage<Props> = async ({params}) => {
-    const {data, content} = await getData(params.slug);
+    const article = await getData(params.slug);
 
     return (
         <div className="py-24 sm:py-32">
             <article className="mx-auto max-w-7xl px-6 lg:px-8 prose dark:prose-invert">
                 <MDXRemote
-                    source={content}
+                    source={article.body_markdown!}
                     components={components}
                     options={{mdxOptions: {
                         remarkPlugins: [remarkGfm, remarkEmoji],
-                        rehypePlugins: [[rehypeHighlight, { languages: { scala }, subset: ['java', 'python'], ignoreMissing: true }]],
+                        rehypePlugins: [[rehypeHighlight, { languages: { scala }, subset: ['java', 'python'], ignoreMissing: true }], rehypeMermaid],
                         /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
                     }}}
                 />

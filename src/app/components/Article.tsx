@@ -3,18 +3,12 @@ import {NextPage} from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Chips from "@/app/components/Chips";
-
-export interface MetaPost {
-    title: string;
-    date: string;
-    datetime?: string;
-    description: string;
-    categories: string;
-}
+import type {IArticle} from "@/api/articles";
+import CustomLink from "@/app/components/CustomLink";
 
 interface Props {
     slug: string;
-    meta: MetaPost
+    meta: IArticle;
 }
 
 // (
@@ -29,10 +23,10 @@ interface Props {
 
 const avatar_url = "https://res.cloudinary.com/practicaldev/image/fetch/s--QL4f43GF--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/1111913/f9379047-d578-4958-8829-0575c33fb47c.png"
 
-const Post: NextPage<Props> = (props) => {
+const Article: NextPage<Props> = (props) => {
     const {slug, meta} = props;
 
-    const categories = meta.categories.split(",");
+    const categories: string[] = meta.tags.split(",");
 
     return (
         <article className="flex max-w-xl flex-col items-start justify-between">
@@ -45,16 +39,18 @@ const Post: NextPage<Props> = (props) => {
 
             <div className="mx-2 mt-4 flex-grow">
                 <div className="flex items-center gap-x-4 text-xs">
-                    <time dateTime={meta.datetime} className="text-gray-500 dark:text-gray-200">
-                        {meta.date}
+                    <time dateTime={meta.created_at} className="text-gray-500 dark:text-gray-200">
+                        {new Date(meta.created_at).toLocaleDateString("pl")}
                     </time>
                     {categories.map(category => (
-                        <Chips key={category}>{category}</Chips>
+                        <CustomLink key={category} as={Chips} href={`tags/${category}`}>
+                            {category}
+                        </CustomLink>
                     ))}
                 </div>
 
                 <div className="group relative">
-                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100 dark:group-hover:text-gray-300">
+                    <h3 className="mt-3 text-3xl font-semilight leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100 dark:group-hover:text-gray-300">
                         <Link href={`/articles/${slug}`}>
                             <span className="absolute inset-0"/>
                             {meta.title}
@@ -80,4 +76,4 @@ const Post: NextPage<Props> = (props) => {
     )
 }
 
-export default Post;
+export default Article;
