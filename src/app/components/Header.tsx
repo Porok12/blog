@@ -87,9 +87,9 @@ const Header = () => {
                                     </div>
                                     <div className="hidden sm:ml-6 sm:block flex-grow">
                                         <div className="flex space-x-4 justify-center">
-                                            {/*<div className="text-sm font-nvmsemibold leading-6 text-gray-900" />*/}
+                                            {/*<div className="text-sm font-semibold leading-6 text-gray-900" />*/}
                                             <Link
-                                                href="/"
+                                                href={process.env.GITHUB === 'true' ? "https://porok12.github.io/blog/" : "/"}
                                                 className="btn btn-primary btn-outlined">
                                                 Posts
                                             </Link>
@@ -120,7 +120,7 @@ const Header = () => {
                             <div className="space-y-1 px-2 pb-3 pt-2 border-t bg-gray-100 dark:bg-slate-700">
                                 <Disclosure.Button
                                     as={Link}
-                                    href="/"
+                                    href={process.env.GITHUB === 'true' ? "https://porok12.github.io/blog/" : "/"}
                                     className="text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600 block rounded-md px-3 py-2 text-base font-medium">
                                     Posts
                                 </Disclosure.Button>
