@@ -1,7 +1,8 @@
 import {NextPage} from "next";
+import TagApi from "@/api/tags";
 
 export const generateStaticParams = async () => {
-    let tags: string[] = ['xd'];
+    let tags: string[] = await TagApi.tags();
 
     console.error('Generated params for /tags/[slug]' + tags.join(', '))
 
@@ -10,7 +11,13 @@ export const generateStaticParams = async () => {
     }))
 }
 
-const Tags: NextPage<any> = (props) => {
+const getData = async () => {
+
+}
+
+const Tags: NextPage<any> = async (props) => {
+    const data  = await getData();
+
     return (
         <>
             Slug {props?.slug}
