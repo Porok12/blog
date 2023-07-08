@@ -120,7 +120,7 @@ const Header = () => {
                             <div className="space-y-1 px-2 pb-3 pt-2 border-t bg-gray-100 dark:bg-slate-700">
                                 <Disclosure.Button
                                     as={Link}
-                                    href={process.env.GITHUB === 'true' ? "https://porok12.github.io/personal-blog/" : "/"}
+                                    href="/"
                                     className="text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600 block rounded-md px-3 py-2 text-base font-medium">
                                     Posts
                                 </Disclosure.Button>

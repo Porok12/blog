@@ -2,8 +2,8 @@ const isGithub = process.env.GITHUB === 'true'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath: isGithub ? '/personal-blog' : undefined,
-    assetPrefix: isGithub ? '/personal-blog/' : undefined,
+    basePath: isGithub ? '/blog' : undefined,
+    assetPrefix: isGithub ? '/blog/' : undefined,
     // i18n: {
     //     locales: ['en', 'pl'],
     //     defaultLocale: 'en',
