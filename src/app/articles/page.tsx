@@ -1,18 +1,18 @@
-import {NextPage} from "next";
+import {NextPage} from 'next'
 
 const getData = async () => {
-    return fetch("https://dev.to/api/articles?username=porok12")
-        .then(response => response.json())
+  return fetch('https://dev.to/api/articles?username=porok12')
+    .then(response => response.json())
 }
 
 const Page: NextPage = async () => {
-    const data = await getData();
+  const data = await getData()
 
-    return (
-        <>
-            {JSON.stringify(data)}
-        </>
-    )
+  return (
+    <>
+      {JSON.stringify(data)}
+    </>
+  )
 }
 
-export default Page;
+export default Page

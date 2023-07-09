@@ -10,8 +10,8 @@ export type ArticleType = {
     // "edited_at": "2023-07-02T19:10:16Z",
     // "cover_image": null,
     // "social_image": "https://dev.to/social_previews/article/1523677.png",
-    "tag_list": string[],
-    "tags": string,
+    'tag_list': string[],
+    'tags': string,
     // "user": {
     //     "name": "Przemysław Papla",
     //     "username": "porok12",

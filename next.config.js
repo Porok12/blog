@@ -2,32 +2,33 @@ const isGithub = process.env.GITHUB === 'true'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath: isGithub ? '/blog' : undefined,
-    assetPrefix: isGithub ? '/blog/' : undefined,
-    // i18n: {
-    //     locales: ['en', 'pl'],
-    //     defaultLocale: 'en',
-    // },
-    output: 'export',
-    // images: {
-    //   loader: "cloudinary",
-    // },
-    experimental: {
-        mdxRs: true,
-        typedRoutes: true,
-    },
-    images: {
-        unoptimized: true
-    }
-};
+  basePath: isGithub ? '/blog' : undefined,
+  assetPrefix: isGithub ? '/blog/' : undefined,
+  // i18n: {
+  //     locales: ['en', 'pl'],
+  //     defaultLocale: 'en',
+  // },
+  output: 'export',
+  // images: {
+  //   loader: "cloudinary",
+  // },
+  experimental: {
+    mdxRs: true,
+    typedRoutes: true,
+  },
+  images: {
+    unoptimized: true
+  }
+}
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withMDX = require('@next/mdx')({
-    options: {
-        remarkPlugins: [],
-        rehypePlugins: [],
-        // If you use `MDXProvider`, uncomment the following line.
-        // providerImportSource: "@mdx-js/react",
-    },
-});
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    // providerImportSource: "@mdx-js/react",
+  },
+})
 
-module.exports = withMDX(nextConfig);
+module.exports = withMDX(nextConfig)

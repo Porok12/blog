@@ -6,14 +6,14 @@ interface Props {
 }
 
 const GlobalError = ({ error, reset }: Props) => {
-    return (
-        <html>
-            <body>
-                <h2>Something went wrong!</h2>
-                <button onClick={() => reset()}>Try again</button>
-            </body>
-        </html>
-    )
+  return (
+    <html>
+      <body>
+        <h2>Something went wrong!</h2>
+        <button onClick={() => reset()}>Try again</button>
+      </body>
+    </html>
+  )
 }
 
-export default GlobalError;
+export default GlobalError

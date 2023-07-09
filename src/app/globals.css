@@ -3,7 +3,7 @@
 
 @import "tailwindcss/components";
 @import "./button.css";
-@import "card.css";
+@import "./card.css";
 
 @import "tailwindcss/utilities";
 /*@import "./custom-utilities.css";*/

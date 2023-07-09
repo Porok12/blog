@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import Menu from "./Menu";
-import MenuItem from "./MenuItem";
+import Menu from './Menu'
+import MenuItem from './MenuItem'
 
 export default {
-    Menu,
-    MenuItem,
-};
+  Menu,
+  MenuItem,
+}
