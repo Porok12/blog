@@ -1,6 +1,5 @@
 import React from 'react'
 import Article from '@/app/components/Article'
-import Button from '@/app/components/Button'
 import Border from '@/app/components/Border'
 import ArticleApi, {IArticle} from '@/api/articles'
 
@@ -26,13 +25,12 @@ const Page = async () => {
           <p className="mt-2 text-lg leading-8">
             Hello learn with me awesome things...
           </p>
-          <Button>Hello</Button>
         </div>
 
         <Border/>
 
         <div
-          className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 justify-items-center gap-x-8 gap-y-16 sm:mt-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
         >
           {articles.map((article) => <Article key={article.id} slug={article.id} meta={article}/>)}
         </div>
