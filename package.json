@@ -5,7 +5,7 @@
   "homepage": "https://porok12.github.io/blog/",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf out/ && next build",
     "start": "next start",
     "serve": "npx serve@latest out",
     "export": "next export",
