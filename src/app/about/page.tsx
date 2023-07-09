@@ -2,8 +2,11 @@
 
 import React from 'react'
 import {NextPage} from 'next'
-import {domAnimation, LazyMotion, m} from 'framer-motion'
+import {LazyMotion, m} from 'framer-motion'
 import Card from '@/app/components/Card'
+
+const loadFeatures = () => import('@/app/utils/features')
+  .then(res => res.default)
 
 const About: NextPage = () => {
   return (
@@ -13,7 +16,7 @@ const About: NextPage = () => {
         <Card>Hello</Card>
         <img src="/test.svg" alt=""/>
 
-        <LazyMotion features={domAnimation}>
+        <LazyMotion features={loadFeatures}>
           <m.div
             className="h-24 w-24 bg-red-600"
             whileHover={{scale: 1.2}}

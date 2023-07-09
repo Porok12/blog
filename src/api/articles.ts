@@ -3,19 +3,20 @@ import fs from 'fs'
 import matter from 'gray-matter'
 
 export interface IArticle {
-    id: string;
-    title: string;
-    slug: string;
-    created_at: string,
-    edited_at: string,
-    description: string;
-    tags: string;
-    body_markdown?: string;
+    id: string
+    title: string
+    slug: string
+    created_at: string
+    edited_at: string
+    description: string
+    tags: string
+    body_markdown?: string
 }
 
 export abstract class ArticleApi {
-    abstract articles(): Promise<IArticle[]>;
-    abstract article(slug: string): Promise<IArticle>;
+    abstract articles(): Promise<IArticle[]>
+    abstract article(slug: string): Promise<IArticle>
+    abstract articlesByTag(tag: string): Promise<IArticle[]>
 }
 
 class ArticleLocal implements ArticleApi {
@@ -54,6 +55,10 @@ class ArticleLocal implements ArticleApi {
       throw Error(`${slug} article not found`)
     }
   }
+
+  articlesByTag(tag: string): Promise<IArticle[]> {
+    return Promise.resolve([])
+  }
 }
 
 class ArticleDevto implements ArticleApi {
@@ -69,6 +74,16 @@ class ArticleDevto implements ArticleApi {
         console.debug(response)
         return response
       })
+  }
+
+  articlesByTag(tag: string): Promise<IArticle[]> {
+    return fetch('https://dev.to/api/articles?username=porok12')
+      .then(response => response.json())
+      .then(response => {
+        console.debug(response)
+        return response
+      })
+      .then(articles => articles.filter(article => article.tags.includes(tag)))
   }
 }
 

@@ -1,4 +1,6 @@
+import React from 'react'
 import {NextPage} from 'next'
+import CustomLink from '@/app/components/CustomLink'
 import Chips from '@/app/components/Chips'
 
 const getData = async () => {
@@ -11,13 +13,16 @@ const getData = async () => {
 
 const Tags: NextPage = async () => {
   const tags = await getData()
-
   return (
     <div className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="text-3xl tracking-tight">Tags</h2>
         <div className="mt-4">
-          {tags.map(tag => <Chips key={tag}>{tag}</Chips>)}
+          {tags.map(tag => (
+            <CustomLink key={tag} as={Chips} href={`tags/${tag}`}>
+              {tag}
+            </CustomLink>
+          ))}
         </div>
       </div>
     </div>
