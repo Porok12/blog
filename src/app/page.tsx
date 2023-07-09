@@ -4,8 +4,6 @@ import Button from '@/app/components/Button'
 import Border from '@/app/components/Border'
 import ArticleApi, {IArticle} from '@/api/articles'
 
-export const fetchCache = 'force-no-store'
-
 const getData = async () => {
   try {
     return await ArticleApi.articles()

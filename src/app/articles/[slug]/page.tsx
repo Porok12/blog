@@ -20,8 +20,6 @@ import '@/styles/highlight-js/github-dark.css'
 import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 
-export const fetchCache = 'force-no-store'
-
 export const generateStaticParams = async () => {
   const articles: string[] = [];
   // try {
