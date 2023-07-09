@@ -89,7 +89,7 @@ const Header = () => {
                       {/*<div className="text-sm font-semibold leading-6 text-gray-900" />*/}
                       <Link
                         href={process.env.GITHUB === 'true' ? 'https://porok12.github.io/blog/' : '/'}
-                        className="btn btn-primary btn-outlined">
+                        className="btn btn-primary btn-outlined" replace>
                         Posts
                       </Link>
                       <Link

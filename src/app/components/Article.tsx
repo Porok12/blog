@@ -43,7 +43,7 @@ const Article: NextPage<Props> = (props) => {
             {new Date(meta.created_at).toLocaleDateString('pl')}
           </time>
           {categories.map(category => (
-            <CustomLink key={category} as={Chips} href={`tags/${category}`}>
+            <CustomLink key={category} as={Chips} href={`/tags/${category}`}>
               {category}
             </CustomLink>
           ))}
