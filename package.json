@@ -19,6 +19,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "@jsdevtools/rehype-toc": "^3.0.2",
     "@material-tailwind/react": "^2.0.5",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
@@ -39,8 +40,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.7",
+    "rehype-document": "^6.1.0",
     "rehype-highlight": "^6.0.0",
     "rehype-img-size": "^1.0.1",
+    "rehype-katex": "^6.0.3",
+    "rehype-slug": "^5.1.0",
     "remark-emoji": "^3.1.2",
     "remark-gfm": "^3.0.1",
     "typescript": "5.1.6"

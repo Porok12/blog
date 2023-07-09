@@ -3,10 +3,14 @@ import {NextPage} from 'next'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
 import {MDXRemote} from 'next-mdx-remote/rsc'
-// import rehypeImageSize from "rehype-img-size";
+// import rehypeImageSize from 'rehype-img-size'
 import remarkGfm from 'remark-gfm'
 import remarkEmoji from 'remark-emoji'
 import rehypeHighlight from 'rehype-highlight'
+import rehypeToc from '@jsdevtools/rehype-toc'
+import rehypeSlug from 'rehype-slug'
+// import rehypeKatex from 'rehype-katex'
+// import rehypeDocument from 'rehype-document'
 import scala from 'highlight.js/lib/languages/scala'
 import ArticleApi from '@/api/articles'
 import Border from '@/app/components/Border'
@@ -75,6 +79,12 @@ const Page: NextPage<Props> = async ({params}) => {
                   subset: ['java', 'python'],
                   ignoreMissing: true
                 }],
+                rehypeSlug,
+                [rehypeToc, {headings: ['h1', 'h2']}],
+                // rehypeKatex,
+                // [rehypeDocument, {
+                //   css: 'https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css'
+                // }],
               ],
               /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
             }
