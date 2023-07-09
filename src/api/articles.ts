@@ -1,22 +1,25 @@
-import path from 'path'
 import fs from 'fs'
+import path from 'path'
 import matter from 'gray-matter'
 
 export interface IArticle {
-    id: string
-    title: string
-    slug: string
-    created_at: string
-    edited_at: string
-    description: string
-    tags: string
-    body_markdown?: string
+  id: string
+  title: string
+  slug: string
+  created_at: string
+  edited_at: string
+  description: string
+  tags: string
+  body_markdown?: string
+  cover_image?: string
 }
 
 export abstract class ArticleApi {
-    abstract articles(): Promise<IArticle[]>
-    abstract article(slug: string): Promise<IArticle>
-    abstract articlesByTag(tag: string): Promise<IArticle[]>
+  abstract articles(): Promise<IArticle[]>
+
+  abstract article(slug: string): Promise<IArticle>
+
+  abstract articlesByTag(tag: string): Promise<IArticle[]>
 }
 
 class ArticleLocal implements ArticleApi {

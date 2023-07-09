@@ -30,12 +30,15 @@ const Article: NextPage<Props> = (props) => {
 
   return (
     <article className="flex max-w-xl flex-col items-start justify-between">
-      <img
-        alt=""
-        src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"
-        className="rounded-2xl"
-        style={{width: '100%', height: 'auto'}}
-      />
+      <div className="relative h-64 w-full">
+        <Image
+          alt=""
+          src={meta.cover_image || ''}
+          className="rounded-2xl shadow-md shadow-gray-200 dark:shadow-none"
+          style={{objectFit: 'cover' }}
+          fill
+        />
+      </div>
 
       <div className="mx-2 mt-4 grow">
         <div className="flex items-center gap-x-4 text-xs">
