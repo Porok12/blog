@@ -7,11 +7,11 @@ import {MDXRemote} from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import remarkEmoji from 'remark-emoji'
 import rehypeHighlight from 'rehype-highlight'
-import {Components} from '@mdx-js/react/lib'
 import scala from 'highlight.js/lib/languages/scala'
 import ArticleApi from '@/api/articles'
 import Border from '@/app/components/Border'
 import '@/styles/highlight-js/github-dark.css'
+import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 export const generateStaticParams = async () => {
   const articles: string[] = [];
@@ -36,7 +36,7 @@ const getData = async (slug: string) => {
   return await ArticleApi.article(slug + '')
 }
 
-const components: Components = {
+const components: MDXRemoteProps['components'] = {
   img: (props: any) => (
     // height and width are part of the props, so they get automatically passed here with {...props}
     <Image {...props} fill="responsive" loading="lazy" alt="..."/>
@@ -52,7 +52,7 @@ interface Props {
 const Page: NextPage<Props> = async ({params}) => {
   const article = await getData(params.slug)
 
-  if (!article) {
+  if (!article?.body_markdown) {
     notFound()
   }
 
@@ -64,7 +64,7 @@ const Page: NextPage<Props> = async ({params}) => {
         <Border/>
         <div className="my-16"/>
         <MDXRemote
-          source={article.body_markdown!}
+          source={article.body_markdown}
           components={components}
           options={{
             mdxOptions: {
