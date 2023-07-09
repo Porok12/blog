@@ -6,6 +6,13 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "comma-dangle": ["warn", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline"
+    }],
     "semi": ["warn", "never"],
     "quotes": ["warn", "single"],
     "indent": ["warn", 2],

@@ -77,7 +77,7 @@ const Page: NextPage<Props> = async ({params}) => {
                 [rehypeHighlight, {
                   languages: {scala},
                   subset: ['java', 'python'],
-                  ignoreMissing: true
+                  ignoreMissing: true,
                 }],
                 rehypeSlug,
                 [rehypeToc, {headings: ['h1', 'h2']}],
@@ -87,7 +87,7 @@ const Page: NextPage<Props> = async ({params}) => {
                 // }],
               ],
               /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
-            }
+            },
           }}
         />
       </article>

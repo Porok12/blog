@@ -7,7 +7,6 @@ import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import ToggleTheme from '@/app/components/ToggleTheme'
 import ThemeMenu from '@/app/components/ThemeMenu'
-
 import Button from '@/app/components/Button'
 
 function classNames(...classes: string[]): string {
