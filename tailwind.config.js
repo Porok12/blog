@@ -13,7 +13,19 @@ module.exports = {
       },
       colors: {
         'primary': '#1fb6ff',
-      }
+      },
+      typography: ({theme}) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-pre-bg': theme('colors.gray[100]'),
+          },
+        },
+        invert: {
+          css: {
+            '--tw-prose-pre-bg': theme('colors.gray[800]'),
+          },
+        },
+      }),
     },
   },
   plugins: [require('@tailwindcss/typography')],

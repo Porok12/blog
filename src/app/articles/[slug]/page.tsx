@@ -14,6 +14,8 @@ import rehypeSlug from 'rehype-slug'
 import scala from 'highlight.js/lib/languages/scala'
 import ArticleApi from '@/api/articles'
 import Border from '@/app/components/Border'
+import CopyButton from '@/app/components/CopyButton'
+import '@/styles/highlight-js/github.css'
 import '@/styles/highlight-js/github-dark.css'
 import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
@@ -44,6 +46,12 @@ const components: MDXRemoteProps['components'] = {
   img: (props: any) => (
     // height and width are part of the props, so they get automatically passed here with {...props}
     <Image {...props} fill="responsive" loading="lazy" alt="..."/>
+  ),
+  pre: props => (
+    <div className="relative">
+      <CopyButton className="absolute" content={props.children} />
+      <pre {...props} />
+    </div>
   ),
 }
 
