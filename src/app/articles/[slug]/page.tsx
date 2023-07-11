@@ -1,5 +1,6 @@
 import React from 'react'
 import {NextPage} from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
 import {MDXRemote} from 'next-mdx-remote/rsc'
@@ -15,9 +16,14 @@ import scala from 'highlight.js/lib/languages/scala'
 import ArticleApi from '@/api/articles'
 import Border from '@/app/components/Border'
 import CopyButton from '@/app/components/CopyButton'
+import {HashtagIcon, LinkIcon} from '@heroicons/react/24/solid'
 import '@/styles/highlight-js/github.css'
 import '@/styles/highlight-js/github-dark.css'
 import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
+// import {
+//   FacebookShareButton,
+//   FacebookIcon,
+// } from 'next-share'
 
 
 export const generateStaticParams = async () => {
@@ -54,6 +60,32 @@ const components: MDXRemoteProps['components'] = {
       <pre {...props} />
     </div>
   ),
+  h1: props => {
+    const {...others} = props
+    return (
+      (
+        <div className={'mb-8 flex items-center justify-start'}>
+          <h1 {...others} className="mb-0"/>
+          <Link className="ml-2" href={`#${others.id}`}>
+            <LinkIcon className="h-6 w-6 duration-100 hover:scale-125"/>
+          </Link>
+        </div>
+      )
+    )
+  },
+  h2: props => {
+    const {...others} = props
+    return (
+      (
+        <div className={'mb-6 mt-10 flex items-center justify-start'}>
+          <h2 {...others} className="my-0"/>
+          <Link className="ml-2" href={`#${others.id}`}>
+            <LinkIcon className="h-5 w-5 duration-100 hover:scale-125"/>
+          </Link>
+        </div>
+      )
+    )
+  },
 }
 
 interface Props {
@@ -99,6 +131,20 @@ const Page: NextPage<Props> = async ({params}) => {
             },
           }}
         />
+
+        <div className="my-4">
+          <Border/>
+          <div className="flex">
+            {/*<FacebookShareButton*/}
+            {/*  url={'https://github.com/next-share'}*/}
+            {/*  quote={'next-share is a social share buttons for your next React apps.'}*/}
+            {/*  hashtag={'#nextshare'}*/}
+            {/*>*/}
+            {/*  <FacebookIcon size={32} round />*/}
+            {/*</FacebookShareButton>*/}
+          </div>
+        </div>
+
       </article>
     </>
   )
