@@ -21,7 +21,7 @@ const Footer = (props: Props) => {
             </Link>
           </div>
           <Border />
-          <div className="mt-4 text-center">
+          <div className="mt-4 text-center text-sm sm:text-base">
             ©2023 Przemysław Papla | All Rights Reserved
           </div>
         </div>

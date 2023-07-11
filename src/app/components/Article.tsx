@@ -29,15 +29,18 @@ const Article: NextPage<Props> = (props) => {
   const categories: string[] = meta.tags.split(',')
 
   return (
-    <article className="flex max-w-xl flex-col items-start justify-between">
-      <div className="relative h-64 w-full">
-        <Image
-          alt=""
-          src={meta.cover_image || ''}
-          className="rounded-2xl shadow-md shadow-gray-200 dark:shadow-none"
-          style={{objectFit: 'cover' }}
-          fill
-        />
+    <article className="group relative flex max-w-xl flex-col items-start justify-between rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-slate-800">
+
+      <div className="flex w-full flex-col items-center justify-center space-y-4">
+        <div className="relative min-h-[200px] min-w-full overflow-hidden rounded-2xl">
+          <Image
+            alt=""
+            src={meta.cover_image || ''}
+            className="object-cover transition duration-500 group-hover:scale-110"
+            style={{objectFit: 'cover' }}
+            fill
+          />
+        </div>
       </div>
 
       <div className="mx-2 mt-4 grow">
@@ -52,10 +55,9 @@ const Article: NextPage<Props> = (props) => {
           ))}
         </div>
 
-        <div className="group relative">
-          <h3 className="font-semilight mt-3 text-3xl leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100 dark:group-hover:text-gray-300">
+        <div className="">
+          <h3 className="font-semilight mt-3 text-2xl leading-6 text-gray-900 group-hover:text-gray-600 dark:text-gray-100 dark:group-hover:text-gray-300">
             <Link href={`/articles/${slug}`}>
-              <span className="absolute inset-0"/>
               {meta.title}
             </Link>
           </h3>

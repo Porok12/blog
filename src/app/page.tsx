@@ -18,20 +18,24 @@ const Page = async () => {
   return (
     <>
       <div className="mx-auto max-w-2xl lg:mx-0">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          My development journey
+        <h2 className="text-center text-3xl font-light tracking-tighter sm:text-left sm:text-5xl">
+          Code with me!
         </h2>
-        <p className="mt-2 text-lg leading-8">
-          Hello learn with me awesome things...
+        <p className="mb-4 mt-2 text-center text-sm leading-8 text-gray-600 dark:text-gray-400 sm:text-left sm:text-base">
+          Here you can find some interesting articles about programming in general
         </p>
       </div>
 
-      <Border/>
+      <Border />
 
-      <div
-        className="mx-auto mt-16 grid max-w-2xl grid-cols-1 justify-items-center gap-x-8 gap-y-16 sm:mt-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-      >
-        {articles.map((article) => <Article key={article.id} slug={article.id} meta={article}/>)}
+      <div className="mt-24 sm:mt-16">
+        <div
+          className="mx-auto grid max-w-2xl grid-cols-1 justify-items-center gap-x-8 gap-y-16 md:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+        >
+          {articles.map((article) => <Article key={article.id} slug={article.id} meta={article}/>)}
+          {articles.map((article) => <Article key={article.id} slug={article.id} meta={article}/>)}
+          {articles.map((article) => <Article key={article.id} slug={article.id} meta={article}/>)}
+        </div>
       </div>
     </>
   )
