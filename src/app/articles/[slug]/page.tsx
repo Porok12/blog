@@ -70,7 +70,7 @@ const Page: NextPage<Props> = async ({params}) => {
   }
 
   return (
-    <div className="py-24 sm:py-32">
+    <>
       <article className="prose mx-auto max-w-7xl px-6 dark:prose-invert lg:px-8">
         <time>{new Date(article.created_at).toLocaleDateString()}</time>
         <h1>{article.title}</h1>
@@ -100,7 +100,7 @@ const Page: NextPage<Props> = async ({params}) => {
           }}
         />
       </article>
-    </div>
+    </>
   )
 }
 

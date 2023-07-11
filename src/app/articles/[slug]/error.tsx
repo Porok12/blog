@@ -14,18 +14,16 @@ export default function Error({error, reset}: Props) {
   }, [error])
 
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2>Something went wrong!</h2>
-        <button
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
-        >
-          Try again
-        </button>
-      </div>
-    </div>
+    <>
+      <h2>Something went wrong!</h2>
+      <button
+        onClick={
+          // Attempt to recover by trying to re-render the segment
+          () => reset()
+        }
+      >
+        Try again
+      </button>
+    </>
   )
 }

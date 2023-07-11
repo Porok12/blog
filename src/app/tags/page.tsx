@@ -14,18 +14,16 @@ const getData = async () => {
 const Tags: NextPage = async () => {
   const tags = await getData()
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="text-3xl tracking-tight">Tags</h2>
-        <div className="mt-4">
-          {tags.map(tag => (
-            <CustomLink key={tag} as={Chips} href={`tags/${tag}`}>
-              {tag}
-            </CustomLink>
-          ))}
-        </div>
+    <>
+      <h2 className="text-3xl tracking-tight">Tags</h2>
+      <div className="mt-4">
+        {tags.map(tag => (
+          <CustomLink key={tag} as={Chips} href={`tags/${tag}`}>
+            {tag}
+          </CustomLink>
+        ))}
       </div>
-    </div>
+    </>
   )
 }
 

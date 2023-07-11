@@ -1,7 +1,7 @@
 import React from 'react'
 import {Inter} from 'next/font/google'
 import Providers from '@/app/providers'
-import Header from '@/app/components/Header'
+import NavBar from '@/app/components/NavBar'
 import Footer from '@/app/components/Footer'
 import 'devicon/devicon.min.css'
 import './globals.css'
@@ -24,9 +24,13 @@ const RootLayout = ({children}: Props) => {
       <body className={`${inter.className} bg-gray-50 text-black dark:bg-slate-950 dark:text-white`}>
         <div className="flex h-screen flex-col">
           <Providers>
-            <Header/>
+            <NavBar/>
             <div className="container mx-auto grow">
-              {children}
+              <div className="py-24 sm:py-32">
+                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                  {children}
+                </div>
+              </div>
             </div>
             <Footer/>
           </Providers>

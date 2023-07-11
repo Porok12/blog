@@ -34,19 +34,17 @@ const Tags: NextPage<Props> = async (props) => {
   }
 
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="mb-4 text-3xl">Tag #{props.params.slug}</h2>
+    <>
+      <h2 className="mb-4 text-3xl">Tag #{props.params.slug}</h2>
 
-        <Border/>
+      <Border/>
 
-        <div
-          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 justify-items-center gap-x-8 gap-y-16 sm:mt-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-        >
-          {articles.map(article => <Article key={article.id} slug={article.id} meta={article} />)}
-        </div>
+      <div
+        className="mx-auto mt-16 grid max-w-2xl grid-cols-1 justify-items-center gap-x-8 gap-y-16 sm:mt-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+      >
+        {articles.map(article => <Article key={article.id} slug={article.id} meta={article} />)}
       </div>
-    </div>
+    </>
   )
 }
 

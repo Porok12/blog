@@ -10,7 +10,7 @@ const Page: NextPage = async () => {
 
   return (
     <>
-      {JSON.stringify(data)}
+      {JSON.stringify(data, null, 2)}
     </>
   )
 }

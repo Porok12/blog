@@ -16,15 +16,6 @@ const ToggleTheme = () => {
   return (
     <IconButton Icon={lightTheme ? SunIcon : MoonIcon} onClick={toggleTheme} />
   )
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className="middle none center hover:bg-gray-2'00 rounded-full  p-2 dark:hover:bg-slate-600"
-    >
-      {lightTheme ? <SunIcon className="h-6 w-6 text-black" /> : <MoonIcon className="h-6 w-6 text-white" />}
-    </button>
-  )
 }
 
 export default ToggleTheme
