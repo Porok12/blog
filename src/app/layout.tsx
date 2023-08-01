@@ -27,9 +27,9 @@ const RootLayout = ({children}: Props) => {
         <div className="flex h-screen flex-col">
           <Providers>
             <NavBar/>
-            <div className="container mx-auto grow">
+            <div className="grow">
               <div className="py-24 sm:py-32">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="container mx-auto">
                   {children}
                 </div>
               </div>

@@ -1,24 +1,24 @@
-import React from 'react'
-import {NextPage} from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
-import {notFound} from 'next/navigation'
-import {MDXRemote} from 'next-mdx-remote/rsc'
-// import rehypeImageSize from 'rehype-img-size'
-import remarkGfm from 'remark-gfm'
-import remarkEmoji from 'remark-emoji'
-import rehypeHighlight from 'rehype-highlight'
+import ArticleApi from '@/api/articles'
+import Border from '@/app/components/Border'
+import '@/styles/highlight-js/github-dark.css'
+import '@/styles/highlight-js/github.css'
+import {LinkIcon} from '@heroicons/react/24/solid'
 import rehypeToc from '@jsdevtools/rehype-toc'
-import rehypeSlug from 'rehype-slug'
 // import rehypeKatex from 'rehype-katex'
 // import rehypeDocument from 'rehype-document'
 import scala from 'highlight.js/lib/languages/scala'
-import ArticleApi from '@/api/articles'
-import Border from '@/app/components/Border'
+import {NextPage} from 'next'
+import {MDXRemote} from 'next-mdx-remote/rsc'
+import Image from 'next/image'
+import Link from 'next/link'
+import {notFound} from 'next/navigation'
+import React from 'react'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeSlug from 'rehype-slug'
+import remarkEmoji from 'remark-emoji'
+// import rehypeImageSize from 'rehype-img-size'
+import remarkGfm from 'remark-gfm'
 import CopyButton from '@/app/components/CopyButton'
-import {HashtagIcon, LinkIcon} from '@heroicons/react/24/solid'
-import '@/styles/highlight-js/github.css'
-import '@/styles/highlight-js/github-dark.css'
 import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 // import {
 //   FacebookShareButton,
@@ -50,13 +50,17 @@ const getData = async (slug: string) => {
 }
 
 const components: MDXRemoteProps['components'] = {
-  img: (props: any) => (
-    // height and width are part of the props, so they get automatically passed here with {...props}
-    <Image {...props} fill="responsive" loading="lazy" alt="..."/>
-  ),
+  img: (props: any) => {
+    return (
+      <div className="relative min-h-[300px]">
+        {/*height and width are part of the props, so they get automatically passed here with {...props}*/}
+        <Image {...props} fill objectFit="contain" loading="lazy" alt="..." className="rounded"/>
+      </div>
+    )
+  },
   pre: props => (
     <div className="relative">
-      <CopyButton className="absolute" content={props.children} />
+      <CopyButton className="absolute" content={props.children}/>
       <pre {...props} />
     </div>
   ),
@@ -89,9 +93,9 @@ const components: MDXRemoteProps['components'] = {
 }
 
 interface Props {
-    params: {
-        slug: string
-    }
+  params: {
+    slug: string
+  }
 }
 
 const Page: NextPage<Props> = async ({params}) => {

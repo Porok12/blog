@@ -1,6 +1,6 @@
-import Border from '@/app/components/Border'
 import React from 'react'
 import {NextPage} from 'next'
+import Border from '@/app/components/Border'
 import CustomLink from '@/app/components/CustomLink'
 import Chips from '@/app/components/Chips'
 
@@ -30,7 +30,7 @@ const Tags: NextPage = async () => {
 
       <Border/>
 
-      <div className="mt-12">
+      <div className="mt-12 flex flex-wrap gap-4">
         {tags.map(tag => (
           <CustomLink key={tag.name} as={Chips} href={`/tags/${tag.name}`}>
             {tag.name} {tag.count}

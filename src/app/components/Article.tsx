@@ -29,30 +29,34 @@ const Article: NextPage<Props> = (props) => {
   const categories: string[] = meta.tags.split(',')
 
   return (
-    <article className="group relative flex max-w-xl flex-col items-start justify-between rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-slate-800">
+    <article className="group relative flex w-full max-w-xl flex-col items-start justify-between rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-slate-900">
 
       <div className="flex w-full flex-col items-center justify-center space-y-4">
-        <div className="relative min-h-[200px] min-w-full overflow-hidden rounded-2xl">
-          <Image
-            alt=""
-            src={meta.cover_image || ''}
-            className="object-cover transition duration-500 group-hover:scale-110"
-            style={{objectFit: 'cover' }}
-            fill
-          />
+        <div className="relative min-h-[240px] min-w-full overflow-hidden rounded-2xl 2xl:min-h-[280px]">
+          <Link href={`/articles/${slug}`}>
+            <Image
+              alt=""
+              src={meta.cover_image || ''}
+              className="object-cover transition duration-500 group-hover:scale-110"
+              style={{objectFit: 'cover' }}
+              fill
+            />
+          </Link>
         </div>
       </div>
 
-      <div className="mx-2 mt-4 grow">
-        <div className="flex items-center gap-x-4 text-xs">
+      <div className="mx-2 mt-4 w-full grow">
+        <div className="flex gap-x-2">
           <time dateTime={meta.created_at} className="text-gray-500 dark:text-gray-200">
             {new Date(meta.created_at).toLocaleDateString('pl')}
           </time>
-          {categories.map(category => (
-            <CustomLink key={category} as={Chips} href={`/tags/${category}`}>
-              {category}
-            </CustomLink>
-          ))}
+          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+            {categories.map(category => (
+              <CustomLink key={category} as={Chips} href={`/tags/${category}`}>
+                {category}
+              </CustomLink>
+            ))}
+          </div>
         </div>
 
         <div className="">
@@ -65,18 +69,6 @@ const Article: NextPage<Props> = (props) => {
         </div>
       </div>
 
-      <div className="flex-backup relative mt-8 hidden items-center gap-x-4">
-        <img src={avatar_url} alt="" className="h-10 w-10 rounded-full bg-gray-50"/>
-        <div className="text-sm leading-6">
-          <p className="font-semibold text-gray-900">
-            <a href="#">
-              <span className="absolute inset-0" />
-              Przemysław Papla
-            </a>
-          </p>
-          <p className="text-gray-600">FullStack</p>
-        </div>
-      </div>
     </article>
   )
 }
