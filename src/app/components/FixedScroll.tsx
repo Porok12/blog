@@ -36,19 +36,29 @@ const FixedScroll = () => {
     // container: ref,
   })
   const distance = 360
-  const y = useTransform(scrollYProgress, [0, 1], [0, 1000])
   const v = useTransform(scrollYProgress, [0, 1], [0, distance])
   // useMotionValueEvent(???, 'change', () => ???)
 
-  // const [scroll, setHookedYPosition] = useState(0)
-  // useEffect(()=> {
-  //   return scrollYProgress.on('change', v=> setHookedYPosition(v))
-  // },[scrollYProgress])
+  const [state, setState] = useState(0)
+  useEffect(()=> {
+    return scrollYProgress.on('change', v=> {
+      if (v <= 0.25) {
+        setState(0)
+      } else if (v < 0.50) {
+        setState(1)
+      } else if (v < 0.75) {
+        setState(2)
+      } else {
+        setState(3)
+      }
+    })
+    // return scrollYProgress.on('change', v=> setHookedYPosition(v))
+  },[scrollYProgress])
 
   const [display, setDisplay] = useState(false)
   useEffect(() => { setDisplay(isInView) }, [isInView])
 
-  console.log(display)
+  // console.log(display)
 
   return (
     <div ref={ref} className="h-[2000px] w-full flex,justify-center">
@@ -57,8 +67,9 @@ const FixedScroll = () => {
         <m.svg width="100" height="100" viewBox="0 0 24 24" style={{
           ...styles(0),
           rotate: v,
+          scale: 0.5 + state,
         }}>
-          <path
+          <m.path
             fill="#fff"
             d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z"/>
         </m.svg>
