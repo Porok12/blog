@@ -86,8 +86,8 @@ const NavBar = () => {
                   <div className="flex shrink-0 items-center">
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                      alt="Your Company"
+                      src="/pp.svg"
+                      alt="PP"
                     />
                   </div>
                   <div className="hidden grow sm:ml-6 sm:block">
