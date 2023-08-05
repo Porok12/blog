@@ -118,7 +118,7 @@ const About: NextPage = () => {
                     staggerChildren: state === 1 || state === 9 ? 0.25 : 0,
                     staggerDirection: state === 9 ? -1 : 1,
                   }}
-                  childrenVariants={lgVariants}
+                  childrenVariants={variants}
                   variants={{
                     '0': {x: 0},
                     '1': {x: 0},

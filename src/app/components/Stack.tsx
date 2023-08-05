@@ -31,7 +31,7 @@ const Stack = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         style={{zIndex: 10, position: 'relative'}}
-        viewBox="-2 0 36 24"
+        viewBox="-2 -1 36 25"
       >
         {items.map(key => (
           <g
