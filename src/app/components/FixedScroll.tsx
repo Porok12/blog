@@ -1,13 +1,5 @@
+import {m, useInView, useScroll, useTransform, Variants} from 'framer-motion'
 import {CSSProperties, useEffect, useRef, useState} from 'react'
-import {
-  m,
-  MotionValue,
-  useElementScroll, useInView, useMotionValue,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion'
 
 const styles = (scroll: number): CSSProperties => ({
   position: 'fixed',
@@ -17,7 +9,7 @@ const styles = (scroll: number): CSSProperties => ({
   marginLeft: '-50px',
   zIndex: 10,
 
-  rotate: `${scroll*360}deg`,
+  rotate: `${scroll * 360}deg`,
 
   // animation: 'rotate 1s linear infinite',
   // animationPlayState: 'paused',
@@ -27,10 +19,27 @@ const styles = (scroll: number): CSSProperties => ({
   // animationFillMode: 'both',
 })
 
+const variants: Variants = ({
+  '0': {
+    scale: 1,
+  },
+  '1': {
+    scale: 1.5,
+    x: 200,
+  },
+  '2': {
+    scale: 2,
+  },
+  '3': {
+    scale: 2.5,
+    x: -200,
+  },
+})
+
 const FixedScroll = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, {amount: 'some', margin: '0px'})
-  const { scrollYProgress } = useScroll({
+  const {scrollYProgress} = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
     // container: ref,
@@ -40,8 +49,8 @@ const FixedScroll = () => {
   // useMotionValueEvent(???, 'change', () => ???)
 
   const [state, setState] = useState(0)
-  useEffect(()=> {
-    return scrollYProgress.on('change', v=> {
+  useEffect(() => {
+    return scrollYProgress.on('change', v => {
       if (v <= 0.25) {
         setState(0)
       } else if (v < 0.50) {
@@ -53,10 +62,12 @@ const FixedScroll = () => {
       }
     })
     // return scrollYProgress.on('change', v=> setHookedYPosition(v))
-  },[scrollYProgress])
+  }, [scrollYProgress])
 
   const [display, setDisplay] = useState(false)
-  useEffect(() => { setDisplay(isInView) }, [isInView])
+  useEffect(() => {
+    setDisplay(isInView)
+  }, [isInView])
 
   // console.log(display)
 
@@ -64,11 +75,18 @@ const FixedScroll = () => {
     <div ref={ref} className="h-[2000px] w-full flex,justify-center">
       {/*className="h-[1000px] w-full" style={{ overflow: 'scroll' }}*/}
       <div style={{display: display ? 'block' : 'none'}}>
-        <m.svg width="100" height="100" viewBox="0 0 24 24" style={{
-          ...styles(0),
-          rotate: v,
-          scale: 0.5 + state,
-        }}>
+        <m.svg
+          width="100"
+          height="100"
+          viewBox="0 0 24 24"
+          style={{
+            ...styles(0),
+            rotate: v,
+          }}
+          initial="0"
+          animate={`${state}`}
+          variants={variants}
+        >
           <m.path
             fill="#fff"
             d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z"/>

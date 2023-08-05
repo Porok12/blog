@@ -17,6 +17,7 @@
     "quotes": ["warn", "single"],
     "indent": ["warn", 2],
     "react/jsx-indent": ["warn", 2],
+    "react/display-name": "off",
     "tailwindcss/no-custom-classname": "off",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-empty-interface": "warn",
