@@ -7,8 +7,6 @@ import 'devicon/devicon.min.css'
 import './globals.css'
 import './button.css'
 
-export const revalidate = 60
-
 const inter = Inter({subsets: ['latin']})
 
 export const metadata = {

@@ -1,5 +1,9 @@
-import ArticleApi from '@/api/articles'
-import Border from '@/app/components/Border'
+import React from 'react'
+import {NextPage} from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import {notFound} from 'next/navigation'
+import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 import '@/styles/highlight-js/github-dark.css'
 import '@/styles/highlight-js/github.css'
 import {LinkIcon} from '@heroicons/react/24/solid'
@@ -7,23 +11,19 @@ import rehypeToc from '@jsdevtools/rehype-toc'
 // import rehypeKatex from 'rehype-katex'
 // import rehypeDocument from 'rehype-document'
 import scala from 'highlight.js/lib/languages/scala'
-import {NextPage} from 'next'
 import {MDXRemote} from 'next-mdx-remote/rsc'
-import Image from 'next/image'
-import Link from 'next/link'
-import {notFound} from 'next/navigation'
-import React from 'react'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
 import remarkEmoji from 'remark-emoji'
 // import rehypeImageSize from 'rehype-img-size'
 import remarkGfm from 'remark-gfm'
 import CopyButton from '@/app/components/CopyButton'
-import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 // import {
 //   FacebookShareButton,
 //   FacebookIcon,
 // } from 'next-share'
+import ArticleApi from '@/api/articles'
+import Border from '@/app/components/Border'
 
 
 export const generateStaticParams = async () => {
@@ -68,7 +68,7 @@ const components: MDXRemoteProps['components'] = {
     const {...others} = props
     return (
       (
-        <div className={'ml-[-28px] mb-8 flex items-center justify-start'}>
+        <div className={'mb-8 ml-[-28px] flex items-center justify-start'}>
           <Link className="mr-2" href={`#${others.id}`}>
             <LinkIcon className="h-6 w-6 duration-100 hover:scale-125"/>
           </Link>
@@ -81,7 +81,7 @@ const components: MDXRemoteProps['components'] = {
     const {...others} = props
     return (
       (
-        <div className={'ml-[-28px] mb-6 mt-10 flex items-center justify-start'}>
+        <div className={'mb-6 ml-[-28px] mt-10 flex items-center justify-start'}>
           <Link className="mr-2" href={`#${others.id}`}>
             <LinkIcon className="h-5 w-5 duration-100 hover:scale-125"/>
           </Link>
