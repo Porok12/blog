@@ -69,7 +69,7 @@ const About: NextPage = () => {
                 title="DevOps"
                 active={state === 3}
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
-                className="right-[40%] top-[60%] mt-[0px] md:right-[25%] md:top-[50%] md:mt-[-100px]"
+                className="right-[40%] top-[60%] mt-[0px] lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
                 Hello world!
                 <div className="mt-4 flex gap-4">
@@ -83,7 +83,7 @@ const About: NextPage = () => {
                 title="Backend"
                 active={state === 5}
                 // style={{top: '50%', left: '25%', marginTop: '-100px'}}
-                className="left-[20%] top-[20%] mt-[0px] md:top-[50%] md:left-[25%] md:mt-[-100px]"
+                className="left-[20%] top-[20%] mt-[0px] lg:left-[25%] lg:top-[50%] lg:mt-[-100px]"
                 // className="top-[50]% md:top-[50]% left-[25%] mt-[-100px] md:left-[25%] md:mt-[-100px]"
               >
                 Hello world!
@@ -98,7 +98,7 @@ const About: NextPage = () => {
                 title="Frontend"
                 active={state === 7}
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
-                className="top-[60%] md:top-[50%] right-[25%] mt-[0px] md:right-[25%] md:mt-[-100px]"
+                className="right-[25%] top-[60%] mt-[0px] lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
                 Hello world!
                 <div className="mt-4 flex gap-4">
@@ -111,7 +111,7 @@ const About: NextPage = () => {
 
               <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center">
                 <Stack
-                  className="hidden md:block"
+                  className="hidden lg:block"
                   initial="0"
                   animate={`${state}`}
                   transition={{
@@ -133,7 +133,7 @@ const About: NextPage = () => {
                   }}
                 />
                 <Stack
-                  className="block md:hidden"
+                  className="block lg:hidden"
                   initial="0"
                   animate={`${state}`}
                   transition={{

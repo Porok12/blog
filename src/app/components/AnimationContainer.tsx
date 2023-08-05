@@ -144,7 +144,6 @@ const AnimationContainer = (props: Props) => {
   } = props
 
   const ref = useRef(null)
-  const isInView = useInView(ref, {amount: 'some', margin: '0px'})
   const {scrollYProgress} = useScroll({
     target: ref,
     offset: ['start end', 'end end'],
@@ -159,6 +158,7 @@ const AnimationContainer = (props: Props) => {
   }, [scrollYProgress])
 
   // const [display, setDisplay] = useState(false)
+  // const isInView = useInView(ref, {amount: 'some', margin: '0px'})
   // useEffect(() => {
   //   setDisplay(isInView)
   // }, [isInView])
@@ -168,7 +168,6 @@ const AnimationContainer = (props: Props) => {
       ref={ref}
       className="my-64 h-[3000px] w-full"
     >
-      <span className="fixed left-0 top-10">{state}</span>
       {children(state)}
     </div>
   )

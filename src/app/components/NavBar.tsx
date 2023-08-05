@@ -56,7 +56,7 @@ const ProfileDropdown = () => {
 }
 
 const MobileButton = (props: any) => {
-  const { open } = props;
+  const { open } = props
   return (
     <Disclosure.Button
       className="inline-flex items-center justify-center rounded-md p-2 text-base hover:bg-gray-200 dark:hover:bg-slate-600">
@@ -72,7 +72,7 @@ const MobileButton = (props: any) => {
 
 const NavBar = () => {
   return (
-    <header>
+    <header className="static z-50">
       <Disclosure as="nav">
         {({open}) => (
           <>
