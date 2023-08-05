@@ -36,7 +36,7 @@ const Article: NextPage<Props> = (props) => {
           <Link href={`/articles/${slug}`}>
             <Image
               alt=""
-              src={meta.cover_image || ''}
+              src={meta.cover_image || 'https://www.freeiconspng.com/uploads/no-image-icon-11.PNG'}
               className="object-cover transition duration-500 group-hover:scale-110"
               style={{objectFit: 'cover' }}
               fill

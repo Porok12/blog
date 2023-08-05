@@ -20,6 +20,7 @@ const getData = async () => {
         return [...acc, { name: curr, count: 1 }]
       }
     }, [] as {name: string, count: number}[]))
+    .then(tags => tags.sort((a, b) => b.count - a.count))
 }
 
 const Tags: NextPage = async () => {
