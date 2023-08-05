@@ -11,18 +11,6 @@ interface Props {
     meta: IArticle;
 }
 
-// (
-//     <Link
-//         key={category}
-//         href={`/tags/${category}`}
-//         className="relative z-10 rounded-full px-3 py-1.5 font-medium bg-gray-100 dark:bg-slate-600 text-gray-600 dark:text-white hover:bg-gray-100"
-//     >
-//         {category}
-//     </Link>
-// )
-
-const avatar_url = 'https://res.cloudinary.com/practicaldev/image/fetch/s--QL4f43GF--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/1111913/f9379047-d578-4958-8829-0575c33fb47c.png'
-
 const Article: NextPage<Props> = (props) => {
   const {slug, meta} = props
 
