@@ -1,5 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
+import SlideContent from '@/app/components/SlideContent'
 import {m, useInView, useScroll, Variants} from 'framer-motion'
+import React, {useEffect, useRef, useState} from 'react'
 import Stack from '@/app/components/Stack'
 
 const ANIMATION_STEPS = 9
@@ -133,31 +134,6 @@ const variants: Record<number, Variants> = ({
   },
 })
 
-const SlideContent = (props: any) => {
-  const {
-    active = false,
-    style = {},
-    axis = 'y',
-    title = 'Title',
-    children = undefined,
-  } = props
-
-  return (
-    <m.div
-      initial="hidden"
-      animate={active ? 'active' : 'hidden'}
-      variants={{
-        hidden: { [axis]: -100, opacity: 0 },
-        active: { [axis]: 0, opacity: 1 },
-      }}
-      style={{ position: 'fixed', ...style }}
-    >
-      {typeof title === 'string' ? <div className="mb-4 text-3xl">{title}</div> : title}
-      {children && <div className="text-base">{children}</div>}
-    </m.div>
-  )
-}
-
 const AnimationContainer = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, {amount: 'some', margin: '0px'})
@@ -169,7 +145,7 @@ const AnimationContainer = () => {
   const [state, setState] = useState(0)
   useEffect(() => {
     return scrollYProgress.on('change', v => {
-      const stepLength  = 1 / ANIMATION_STEPS
+      const stepLength = 1 / ANIMATION_STEPS
       setState(Math.floor(v / stepLength))
     })
   }, [scrollYProgress])
@@ -182,7 +158,7 @@ const AnimationContainer = () => {
   return (
     <div
       ref={ref}
-      className="flex,justify-center my-64 h-[3000px] w-full"
+      className="my-64 h-[3000px] w-full"
     >
       <span className="fixed left-0 top-10">{state}</span>
 
@@ -190,19 +166,19 @@ const AnimationContainer = () => {
       <SlideContent
         title={<h2 className="my-4 text-3xl">Tech Stack</h2>}
         active={state > 1 && state < 9}
-        style={{ top: '10%', right: '50%', marginRight: '-80px' }}
+        style={{top: '10%', right: '50%', marginRight: '-80px'}}
       />
 
-      <SlideContent title="DevOps" active={state === 3} style={{ top: '50%', right: '25%', marginTop: '-100px' }}>
+      <SlideContent title="DevOps" active={state === 3} style={{top: '50%', right: '25%', marginTop: '-100px'}}>
         Hello world!
-        <div className="flex gap-4 mt-4">
+        <div className="mt-4 flex gap-4">
           <i className="devicon-kubernetes-plain" style={{fontSize: 64, color: '#326de6'}}></i>
           <i className="devicon-docker-plain" style={{fontSize: 64, color: '#239ced'}}></i>
           <i className="devicon-linux-plain" style={{fontSize: 64, color: '#e8e8e8'}}></i>
         </div>
       </SlideContent>
 
-      <SlideContent title="Backend" active={state === 5} style={{ top: '50%', left: '25%', marginTop: '-100px' }}>
+      <SlideContent title="Backend" active={state === 5} style={{top: '50%', left: '25%', marginTop: '-100px'}}>
         Hello world!
         <div className="flex gap-4 mt-4">
           <i className="devicon-scala-plain" style={{fontSize: 80, color: '#de3423'}}/>
@@ -211,7 +187,7 @@ const AnimationContainer = () => {
         </div>
       </SlideContent>
 
-      <SlideContent title="Frontend" active={state === 7} style={{ top: '50%', right: '25%', marginTop: '-100px' }}>
+      <SlideContent title="Frontend" active={state === 7} style={{top: '50%', right: '25%', marginTop: '-100px'}}>
         Hello world!
         <div className="flex gap-4 mt-4">
           <i className="devicon-react-plain" style={{fontSize: 64, color: '#61dafb'}}></i>
@@ -230,36 +206,16 @@ const AnimationContainer = () => {
         }}
         childrenVariants={variants}
         variants={{
-          '0': {
-            x: 0,
-          },
-          '1': {
-            x: 0,
-          },
-          '2': {
-            x: -500,
-          },
-          '3': {
-            x: -500,
-          },
-          '4': {
-            x: 500,
-          },
-          '5': {
-            x: 500,
-          },
-          '6': {
-            x: -500,
-          },
-          '7': {
-            x: -500,
-          },
-          '8': {
-            x: 0,
-          },
-          '9': {
-            x: 0,
-          },
+          '0': {x: 0},
+          '1': {x: 0},
+          '2': {x: -500},
+          '3': {x: -500},
+          '4': {x: 500},
+          '5': {x: 500},
+          '6': {x: -500},
+          '7': {x: -500},
+          '8': {x: 0},
+          '9': {x: 0},
         }}
         style={{
           position: 'fixed',
