@@ -6,10 +6,13 @@ export interface IArticle {
   id: string
   title: string
   slug: string
+  path: string
+  url: string
   created_at: string
   edited_at: string
   description: string
   tags: string
+  tag_list: Array<string>
   body_markdown?: string
   cover_image?: string
 }

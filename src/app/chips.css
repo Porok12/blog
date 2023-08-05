@@ -1,5 +1,5 @@
 .chips {
-    @apply rounded-full bg-indigo-400 font-semibold uppercase text-white dark:bg-slate-800
+    @apply rounded-full bg-gray-400 font-semibold uppercase text-white dark:bg-slate-800
 }
 
 .chips-small {

@@ -1,0 +1,4 @@
+.icon-btn {
+    /*@apply rounded-full p-2 transition hover:bg-gray-200 dark:hover:bg-slate-600*/
+    @apply rounded-md p-2 transition ease-out hover:bg-gray-200 dark:hover:bg-slate-600
+}

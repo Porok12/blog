@@ -2,6 +2,7 @@ import React, {CSSProperties, PropsWithChildren} from 'react'
 import {m} from 'framer-motion'
 
 interface Props extends PropsWithChildren {
+  id?: string
   active?: boolean
   style?: CSSProperties
   axis?: 'y' | 'x'
@@ -11,6 +12,7 @@ interface Props extends PropsWithChildren {
 
 const SlideContent = (props: Props) => {
   const {
+    id,
     active = false,
     style = {},
     axis = 'y',
@@ -21,6 +23,7 @@ const SlideContent = (props: Props) => {
 
   return (
     <m.div
+      id={id}
       initial="hidden"
       animate={active ? 'active' : 'hidden'}
       variants={{

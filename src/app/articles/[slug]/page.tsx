@@ -68,11 +68,11 @@ const components: MDXRemoteProps['components'] = {
     const {...others} = props
     return (
       (
-        <div className={'mb-8 flex items-center justify-start'}>
-          <h1 {...others} className="mb-0"/>
-          <Link className="ml-2" href={`#${others.id}`}>
+        <div className={'ml-[-28px] mb-8 flex items-center justify-start'}>
+          <Link className="mr-2" href={`#${others.id}`}>
             <LinkIcon className="h-6 w-6 duration-100 hover:scale-125"/>
           </Link>
+          <h1 {...others} className="mb-0"/>
         </div>
       )
     )
@@ -81,11 +81,11 @@ const components: MDXRemoteProps['components'] = {
     const {...others} = props
     return (
       (
-        <div className={'mb-6 mt-10 flex items-center justify-start'}>
-          <h2 {...others} className="my-0"/>
-          <Link className="ml-2" href={`#${others.id}`}>
+        <div className={'ml-[-28px] mb-6 mt-10 flex items-center justify-start'}>
+          <Link className="mr-2" href={`#${others.id}`}>
             <LinkIcon className="h-5 w-5 duration-100 hover:scale-125"/>
           </Link>
+          <h2 {...others} className="my-0"/>
         </div>
       )
     )

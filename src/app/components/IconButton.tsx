@@ -11,7 +11,7 @@ const IconButton = (props: Props) => {
   return (
     <button
       onClick={onClick}
-      className="middle none center rounded-full p-2 hover:bg-gray-200 dark:hover:bg-slate-600"
+      className="icon-btn"
     >
       <Icon className="h-6 w-6 text-base"/>
     </button>

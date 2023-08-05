@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import {Route} from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
@@ -8,64 +9,41 @@ import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import ToggleTheme from '@/app/components/ToggleTheme'
 import ThemeMenu from '@/app/components/ThemeMenu'
 import Button from '@/app/components/Button'
+import classNames from '@/app/utils/classNames'
 
-function classNames(...classes: string[]): string {
-  return classes.filter(Boolean).join(' ')
+interface LinkType {
+  href: Route
+  title: string
 }
 
-const ProfileDropdown = () => {
-  return (
-    <Menu as="div" className="relative ml-3">
-      <div>
-        <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <span className="sr-only">Open user menu</span>
-          <img
-            className="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
-        </Menu.Button>
-      </div>
-      <Transition
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <Menu.Item>
-            {({ active }) => (
-              <a href="#" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
-                Your Profile
-              </a>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <a href="#" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
-                Settings
-              </a>
-            )}
-          </Menu.Item>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-  )
-}
+const links: Array<LinkType> = [
+  {
+    href: '/',
+    title: 'Home',
+  },{
+    href: '/tags',
+    title: 'Tags',
+  },{
+    href: '/about',
+    title: 'About',
+  },
+]
 
-const MobileButton = (props: any) => {
+const PP = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+    <path
+      className="fill-gray-400 dark:fill-slate-200"
+      d="M14.298 0c-1.148 0-2.376.051-3.687.153a29.718 29.718 0 0 0-3.933.495L0 26.68h5.161l2.417-9.337H9.79c.105 0 .204-.005.309-.006l1.038-4.052c-.15.003-.294.017-.444.017h-2.09l2.336-9.11a25.89 25.89 0 0 1 2.866-.153c1.718 0 3.07.266 4.071.79 1.018-.065 2-.107 2.913-.107 1.386 0 2.633.108 3.753.313-.41-1.287-1.21-2.346-2.418-3.167C20.32.623 17.712 0 14.298 0Zm7.131 5.32c-1.147 0-2.378.05-3.689.152a29.713 29.713 0 0 0-3.933.495L7.13 32h5.163l2.417-9.339h2.212c2.213 0 4.234-.177 6.064-.532 1.857-.381 3.442-.98 4.753-1.793 1.338-.813 2.375-1.854 3.113-3.124.765-1.296 1.148-2.859 1.148-4.689 0-2.312-.917-4.09-2.747-5.335-1.802-1.245-4.41-1.869-7.824-1.869Zm-.492 4.04c1.776 0 3.169.278 4.18.837 1.037.56 1.556 1.487 1.556 2.782 0 1.119-.247 2.048-.739 2.785-.491.711-1.147 1.282-1.966 1.714-.82.406-1.761.698-2.827.876a20.123 20.123 0 0 1-3.319.268h-2.088l2.335-9.11c.464-.05.93-.09 1.394-.115a26.46 26.46 0 0 1 1.474-.037zm.732.765a25.887 25.887 0 0 0-2.763.143c-.034.058-.064.12-.101.177-.022.03-.048.057-.07.087l-1.523 5.946c1.284-.366 2.416-.853 3.395-1.46 1.338-.814 2.377-1.855 3.115-3.125a7.59 7.59 0 0 0 .642-1.473c-.774-.189-1.661-.295-2.695-.295z"
+    />
+  </svg>
+)
+
+const HamburgerButton = (props: { open?: boolean }) => {
   const { open } = props
   return (
     <Disclosure.Button
-      className="inline-flex items-center justify-center rounded-md p-2 text-base hover:bg-gray-200 dark:hover:bg-slate-600">
-      <span className="sr-only">Open main menu</span>
-      {open ? (
-        <XMarkIcon className="block h-6 w-6" />
-      ) : (
-        <Bars3Icon className="block h-6 w-6" />
-      )}
+      className="rounded-md p-2 transition ease-in-out hover:bg-gray-200 dark:hover:bg-slate-600">
+      {open ? <XMarkIcon className="block h-6 w-6" /> : <Bars3Icon className="block h-6 w-6" />}
     </Disclosure.Button>
   )
 }
@@ -79,34 +57,23 @@ const NavBar = () => {
             <div className="bg-gray-100 px-2 dark:bg-slate-700 sm:px-6 lg:px-8">
               <div className="container relative mx-auto flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                  <MobileButton open={open}/>
+                  <HamburgerButton open={open}/>
                 </div>
 
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className="flex shrink-0 items-center">
-                    <img
-                      className="h-8 w-auto"
-                      src="/pp.svg"
-                      alt="PP"
-                    />
+                    <PP/>
                   </div>
                   <div className="hidden grow sm:ml-6 sm:block">
                     <div className="flex justify-center space-x-4">
-                      <Link
-                        href={process.env.GITHUB === 'true' ? 'https://porok12.github.io/blog/' : '/'}
-                        className="btn btn-primary btn-outlined" replace>
-                        Posts
-                      </Link>
-                      <Link
-                        href="/tags"
-                        className="btn btn-primary btn-outlined">
-                        Tags
-                      </Link>
-                      <Link
-                        href="/about"
-                        className="btn btn-primary btn-outlined">
-                        About
-                      </Link>
+                      {links.map(({href, title}) => (
+                        <Link
+                          key={href}
+                          href={href}
+                          className="btn btn-primary btn-outlined">
+                          {title}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -122,24 +89,16 @@ const NavBar = () => {
 
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 border-t bg-gray-100 px-2 pb-3 pt-2 dark:bg-slate-700">
-                <Disclosure.Button
-                  as={Link}
-                  href={process.env.GITHUB === 'true' ? 'https://porok12.github.io/blog/' : '/'}
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600">
-                  Posts
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as={Link}
-                  href="/tags"
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600">
-                  Tags
-                </Disclosure.Button>
-                <Disclosure.Button
-                  as={Link}
-                  href="/about"
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-400 hover:text-white dark:hover:bg-slate-600">
-                  About
-                </Disclosure.Button>
+                {links.map(({href, title}) => (
+                  <Disclosure.Button
+                    as={Link}
+                    key={href}
+                    href={href}
+                    className="btn btn-primary btn-outlined"
+                  >
+                    {title}
+                  </Disclosure.Button>
+                ))}
               </div>
             </Disclosure.Panel>
           </>

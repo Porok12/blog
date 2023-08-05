@@ -11,7 +11,7 @@ const ScrollProgress = () => {
 
   return (
     <m.div
-      className="fixed top-0 z-10 h-1 w-full bg-indigo-600"
+      className="fixed top-0 z-10 h-1 w-full bg-indigo-400 dark:bg-indigo-600"
       style={{scaleX, scaleY}}
     />
   )

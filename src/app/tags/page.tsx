@@ -3,12 +3,14 @@ import {NextPage} from 'next'
 import Border from '@/app/components/Border'
 import CustomLink from '@/app/components/CustomLink'
 import Chips from '@/app/components/Chips'
+import type {IArticle} from '@/api/articles'
 
 const getData = async () => {
   return await fetch('https://dev.to/api/articles?username=porok12')
     .then(response => response.json())
-    .then(articles => articles.map(article => article.tags))
-    .then((tags: string[]) => tags.flatMap(tags => tags.split(',')))
+    .then((articles: Array<IArticle>) => articles.map(article => article.tags))
+    .then((tags: string[]) => tags.flatMap(tags => tags.split(', ')))
+    .then((tags: string[]) => tags.map(tag => tag.trim()))
     .then((tags: string[]) => tags.reduce((acc, curr) => {
       const index = acc.findIndex(tag => tag.name === curr)
       if (index >= 1) {
