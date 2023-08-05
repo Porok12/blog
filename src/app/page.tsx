@@ -3,6 +3,10 @@ import Article from '@/app/components/Article'
 import Border from '@/app/components/Border'
 import ArticleApi, {IArticle} from '@/api/articles'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
+
 const getData = async () => {
   try {
     return await ArticleApi.articles()
