@@ -3,7 +3,7 @@
 import React from 'react'
 import {NextPage} from 'next'
 import Image from 'next/image'
-import {LazyMotion} from 'framer-motion'
+import {m, LazyMotion} from 'framer-motion'
 import AnimatedText from '@/app/components/AnimatedText'
 import AnimationContainer, {variants} from '@/app/components/AnimationContainer'
 import ScrollProgress from '@/app/components/ScrollProgress'
@@ -13,6 +13,19 @@ import Terminal from '@/app/components/Terminal'
 
 const loadFeatures = () => import('@/app/utils/features')
   .then(res => res.default)
+
+const lgVariants = {}
+for (const key1 in variants) {
+  lgVariants[key1] = {}
+  for (const key2 in variants[key1]) {
+    lgVariants[key1][key2] = {
+      ...variants[key1][key2],
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      x: variants[key1][key2].opacity === 0 ? '25%' : '0%',
+    }
+  }
+}
 
 const About: NextPage = () => {
   return (
@@ -31,14 +44,16 @@ const About: NextPage = () => {
 
       Przemysław Papla
 
-      <Image
-        width={400}
-        height={400}
-        src="https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
-        alt=""/>
-
-
       <LazyMotion features={loadFeatures}>
+        <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 2}}>
+          <Image
+            width={400}
+            height={400}
+            src="https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+            alt=""
+          />
+        </m.div>
+
         <ScrollProgress/>
 
         <AnimationContainer>
@@ -47,10 +62,15 @@ const About: NextPage = () => {
               <SlideContent
                 title={<h2 className="text-3xl">Tech Stack</h2>}
                 active={state > 1 && state < 9}
-                style={{top: '10%', right: '50%', marginRight: '-80px'}}
+                style={{top: '4%', right: '50%', marginRight: '-80px'}}
               />
 
-              <SlideContent title="DevOps" active={state === 3} style={{top: '50%', right: '25%', marginTop: '-100px'}}>
+              <SlideContent
+                title="DevOps"
+                active={state === 3}
+                // style={{top: '50%', right: '25%', marginTop: '-100px'}}
+                className="right-[40%] top-[60%] mt-[0px] md:right-[25%] md:top-[50%] md:mt-[-100px]"
+              >
                 Hello world!
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-kubernetes-plain" style={{fontSize: 64, color: '#326de6'}}></i>
@@ -59,7 +79,13 @@ const About: NextPage = () => {
                 </div>
               </SlideContent>
 
-              <SlideContent title="Backend" active={state === 5} style={{top: '50%', left: '25%', marginTop: '-100px'}}>
+              <SlideContent
+                title="Backend"
+                active={state === 5}
+                // style={{top: '50%', left: '25%', marginTop: '-100px'}}
+                className="left-[20%] top-[20%] mt-[0px] md:top-[50%] md:left-[25%] md:mt-[-100px]"
+                // className="top-[50]% md:top-[50]% left-[25%] mt-[-100px] md:left-[25%] md:mt-[-100px]"
+              >
                 Hello world!
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-scala-plain" style={{fontSize: 80, color: '#de3423'}}/>
@@ -68,8 +94,12 @@ const About: NextPage = () => {
                 </div>
               </SlideContent>
 
-              <SlideContent title="Frontend" active={state === 7}
-                style={{top: '50%', right: '25%', marginTop: '-100px'}}>
+              <SlideContent
+                title="Frontend"
+                active={state === 7}
+                // style={{top: '50%', right: '25%', marginTop: '-100px'}}
+                className="top-[60%] md:top-[50%] right-[25%] mt-[0px] md:right-[25%] md:mt-[-100px]"
+              >
                 Hello world!
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-react-plain" style={{fontSize: 64, color: '#61dafb'}}></i>
@@ -81,13 +111,14 @@ const About: NextPage = () => {
 
               <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center">
                 <Stack
+                  className="hidden md:block"
                   initial="0"
                   animate={`${state}`}
                   transition={{
                     staggerChildren: state === 1 || state === 9 ? 0.25 : 0,
                     staggerDirection: state === 9 ? -1 : 1,
                   }}
-                  childrenVariants={variants}
+                  childrenVariants={lgVariants}
                   variants={{
                     '0': {x: 0},
                     '1': {x: 0},
@@ -99,6 +130,28 @@ const About: NextPage = () => {
                     '7': {x: '-75%'},
                     '8': {x: 0},
                     '9': {x: 0},
+                  }}
+                />
+                <Stack
+                  className="block md:hidden"
+                  initial="0"
+                  animate={`${state}`}
+                  transition={{
+                    staggerChildren: state === 1 || state === 9 ? 0.25 : 0,
+                    staggerDirection: state === 9 ? -1 : 1,
+                  }}
+                  childrenVariants={variants}
+                  variants={{
+                    '0': {y: 0},
+                    '1': {y: 0},
+                    '2': {y: '-50%'},
+                    '3': {y: '-50%'},
+                    '4': {y: '75%'},
+                    '5': {y: '75%'},
+                    '6': {y: '-50%'},
+                    '7': {y: '-50%'},
+                    '8': {y: 0},
+                    '9': {y: 0},
                   }}
                 />
               </div>

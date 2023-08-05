@@ -6,6 +6,7 @@ interface Props extends PropsWithChildren {
   style?: CSSProperties
   axis?: 'y' | 'x'
   title: string | React.ReactNode
+  className?: string,
 }
 
 const SlideContent = (props: Props) => {
@@ -15,6 +16,7 @@ const SlideContent = (props: Props) => {
     axis = 'y',
     title = 'Title',
     children = undefined,
+    className,
   } = props
 
   return (
@@ -26,6 +28,7 @@ const SlideContent = (props: Props) => {
         active: {[axis]: 0, opacity: 1},
       }}
       style={{position: 'fixed', ...style}}
+      className={className}
     >
       {typeof title === 'string' ? <div className="mb-4 text-3xl">{title}</div> : title}
       {children && <div className="text-base">{children}</div>}
