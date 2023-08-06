@@ -68,13 +68,13 @@ class ArticleLocal implements ArticleApi {
 }
 
 class ArticleDevto implements ArticleApi {
-  articles(): Promise<IArticle[]> {
-    return fetch('https://dev.to/api/articles?username=porok12')
+  async articles(): Promise<IArticle[]> {
+    return await fetch('https://dev.to/api/articles?username=porok12', {next: {tags: ['articles']}})
       .then(response => response.json())
   }
 
-  article(id: string): Promise<IArticle> {
-    return fetch(`https://dev.to/api/articles/${id}?username=porok12`)
+  async article(id: string): Promise<IArticle> {
+    return await fetch(`https://dev.to/api/articles/${id}?username=porok12`, {next: {tags: ['articles']}})
       .then(response => response.json())
       .then(response => {
         console.debug(response)
@@ -82,8 +82,8 @@ class ArticleDevto implements ArticleApi {
       })
   }
 
-  articlesByTag(tag: string): Promise<IArticle[]> {
-    return fetch('https://dev.to/api/articles?username=porok12')
+  async articlesByTag(tag: string): Promise<IArticle[]> {
+    return await fetch('https://dev.to/api/articles?username=porok12', {next: {tags: ['articles']}})
       .then(response => response.json())
       .then(response => {
         console.debug(response)

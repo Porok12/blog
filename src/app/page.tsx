@@ -3,11 +3,6 @@ import Article from '@/app/components/Article'
 import Border from '@/app/components/Border'
 import ArticleApi, {IArticle} from '@/api/articles'
 
-export const revalidate = 0
-// export const dynamic = 'force-dynamic'
-// export const dynamicParams = false
-// export const fetchCache = 'force-no-store'
-
 
 const getData = async () => {
   try {

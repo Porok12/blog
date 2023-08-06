@@ -15,10 +15,11 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
     typedRoutes: true,
+    // serverActions: true,
   },
   images: {
-    unoptimized: true
-  }
+    unoptimized: true,
+  },
 }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

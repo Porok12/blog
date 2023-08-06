@@ -3,7 +3,6 @@ import {NextPage} from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
-import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 import '@/styles/highlight-js/github-dark.css'
 import '@/styles/highlight-js/github.css'
 import {LinkIcon} from '@heroicons/react/24/solid'
@@ -24,6 +23,7 @@ import CopyButton from '@/app/components/CopyButton'
 // } from 'next-share'
 import ArticleApi from '@/api/articles'
 import Border from '@/app/components/Border'
+import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 
 export const generateStaticParams = async () => {

@@ -14,19 +14,6 @@ import Terminal from '@/app/components/Terminal'
 const loadFeatures = () => import('@/app/utils/features')
   .then(res => res.default)
 
-const lgVariants = {}
-for (const key1 in variants) {
-  lgVariants[key1] = {}
-  for (const key2 in variants[key1]) {
-    lgVariants[key1][key2] = {
-      ...variants[key1][key2],
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      x: variants[key1][key2].opacity === 0 ? '25%' : '0%',
-    }
-  }
-}
-
 const About: NextPage = () => {
   return (
     <div className="flex flex-col items-center gap-y-8">
@@ -164,4 +151,3 @@ const About: NextPage = () => {
 }
 
 export default About
-
