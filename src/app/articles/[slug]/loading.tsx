@@ -1,9 +1,10 @@
+import React from 'react'
+import Spinner from '@/app/components/Spinner'
+
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
-  // return <LoadingSkeleton />
   return (
-    <>
-      Loading...
-    </>
+    <div className="flex w-full items-center justify-center">
+      <Spinner />
+    </div>
   )
 }
