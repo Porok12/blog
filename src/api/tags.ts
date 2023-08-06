@@ -16,7 +16,7 @@ class TagDevto implements TagApi {
     return fetch('https://dev.to/api/articles?username=porok12')
       .then(response => response.json())
       .then(articles => articles.map((article: IArticle) => article.tags))
-      .then((tags: string[]) => tags.flatMap(tags => tags.split(',')))
+      .then((tags: string[]) => tags.flatMap(tags => tags.split(', ')))
   }
 }
 
