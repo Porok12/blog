@@ -17,6 +17,7 @@ class TagDevto implements TagApi {
       .then(response => response.json())
       .then(articles => articles.map((article: IArticle) => article.tags))
       .then((tags: string[]) => tags.flatMap(tags => tags.split(', ')))
+      .then((tags: string[]) => tags.map(tag => tag.trim()).filter(tag => tag !== ''))
   }
 }
 
