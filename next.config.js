@@ -13,8 +13,8 @@ const nextConfig = {
   //   loader: "cloudinary",
   // },
   experimental: {
-    mdxRs: true,
     typedRoutes: true,
+    // mdxRs: true,
     // serverActions: true,
   },
   images: {
@@ -23,13 +23,13 @@ const nextConfig = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const withMDX = require('@next/mdx')({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
-  },
-})
+// const withMDX = require('@next/mdx')({
+//   options: {
+//     remarkPlugins: [],
+//     rehypePlugins: [],
+//     // If you use `MDXProvider`, uncomment the following line.
+//     // providerImportSource: "@mdx-js/react",
+//   },
+// })
 
-module.exports = withMDX(nextConfig)
+module.exports = /*withMDX(*/nextConfig/*)*/

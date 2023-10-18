@@ -76,6 +76,7 @@ class ArticleDevto implements ArticleApi {
   async article(id: string): Promise<IArticle> {
     return await fetch(`https://dev.to/api/articles/${id}?username=porok12`, {next: {tags: ['articles']}})
       .then(response => response.json())
+      .then(response => ({...response, body_html: undefined, user: undefined}))
       .then(response => {
         console.debug(response)
         return response

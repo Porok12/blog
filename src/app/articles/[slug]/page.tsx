@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import {NextPage} from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import {notFound} from 'next/navigation'
+import {MDXRemote} from 'next-mdx-remote/rsc'
 import '@/styles/highlight-js/github-dark.css'
 import '@/styles/highlight-js/github.css'
 import {LinkIcon} from '@heroicons/react/24/solid'
@@ -10,12 +11,11 @@ import rehypeToc from '@jsdevtools/rehype-toc'
 // import rehypeKatex from 'rehype-katex'
 // import rehypeDocument from 'rehype-document'
 import scala from 'highlight.js/lib/languages/scala'
-import {MDXRemote} from 'next-mdx-remote/rsc'
-import rehypeHighlight from 'rehype-highlight'
+import rehypeHighlight from 'rehype-highlight' // 7.0.0 is problematic
 import rehypeSlug from 'rehype-slug'
 import remarkEmoji from 'remark-emoji'
 // import rehypeImageSize from 'rehype-img-size'
-import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm' // https://github.com/hashicorp/next-mdx-remote/issues/403
 import CopyButton from '@/app/components/CopyButton'
 // import {
 //   FacebookShareButton,
@@ -36,7 +36,7 @@ export const generateStaticParams = async () => {
   // } catch (e) {
   //     console.error(e);
   // }
-  (await ArticleApi.articles()).forEach(article => articles.push(article.id + ''))
+  (await ArticleApi.articles()).forEach(article => articles.push(article.id.toString()))
 
   console.debug('Generated params for /articles/[slug]: ' + articles.join(', '))
 
@@ -46,7 +46,7 @@ export const generateStaticParams = async () => {
 }
 
 const getData = async (slug: string) => {
-  return await ArticleApi.article(slug + '')
+  return await ArticleApi.article(slug.toString())
 }
 
 const components: MDXRemoteProps['components'] = {
@@ -112,29 +112,34 @@ const Page: NextPage<Props> = async ({params}) => {
         <h1>{article.title}</h1>
         <Border/>
         <div className="my-16"/>
-        <MDXRemote
-          source={article.body_markdown}
-          components={components}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm, remarkEmoji],
-              rehypePlugins: [
-                [rehypeHighlight, {
-                  languages: {scala},
-                  subset: ['java', 'python'],
-                  ignoreMissing: true,
-                }],
-                rehypeSlug,
-                [rehypeToc, {headings: ['h1', 'h2']}],
-                // rehypeKatex,
-                // [rehypeDocument, {
-                //   css: 'https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css'
-                // }],
-              ],
-              /*rehypePlugins: [[rehypeImageSize, {dir: "public"}]]*/
-            },
-          }}
-        />
+        <Suspense fallback={<>Loading...</>}>
+          <MDXRemote
+            source={article.body_markdown}
+            components={components}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [
+                  remarkGfm,
+                  remarkEmoji,
+                ],
+                rehypePlugins: [
+                  [rehypeHighlight, {
+                    languages: {scala},
+                    subset: ['java', 'python'],
+                    ignoreMissing: true,
+                  }],
+                  rehypeSlug,
+                  [rehypeToc, {headings: ['h1', 'h2']}],
+                  // rehypeKatex,
+                  // [rehypeDocument, {
+                  //   css: 'https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css'
+                  // }],
+                ],
+                //rehypePlugins: [[rehypeImageSize, {dir: "public"}]]
+              },
+            }}
+          />
+        </Suspense>
 
         <div className="my-4">
           <Border/>
