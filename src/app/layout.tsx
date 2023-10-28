@@ -4,8 +4,7 @@ import Providers from '@/app/providers'
 import NavBar from '@/app/components/NavBar'
 import Footer from '@/app/components/Footer'
 import 'devicon/devicon.min.css'
-import './globals.css'
-import './button.css'
+import './styles/globals.css'
 
 const inter = Inter({subsets: ['latin']})
 

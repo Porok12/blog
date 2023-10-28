@@ -29,7 +29,7 @@ const Tags: NextPage = async () => {
 
       <Border/>
 
-      <div className="mt-12 flex flex-wrap gap-4">
+      <div className="mx-8 mt-12 flex flex-wrap gap-4">
         {tags.map(tag => (
           <CustomLink key={tag.name} as={(props: any) => <Chips size="large" {...props}/>} href={`/tags/${tag.name}`}>
             {tag.name}<span className="ml-2">{tag.count}</span>
