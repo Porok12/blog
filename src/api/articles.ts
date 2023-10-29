@@ -68,6 +68,9 @@ class ArticleLocal implements ArticleApi {
 class ArticleDevto implements ArticleApi {
 
   private devto(url: string): Promise<Response> {
+    if (!process.env.API_KEY) {
+      console.error('Empty API_KEY')
+    }
     return fetch('https://dev.to/api/' + url, {
       headers: {
         'accept': 'application/vnd.forem.api-v1+json',
