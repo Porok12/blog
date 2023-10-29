@@ -64,6 +64,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
         run: |
           echo "API_KEY=$API_KEY" > .env.production
+          cat .env.production
           ls -la
           npm run build
       - name: Static HTML export with Next.js
