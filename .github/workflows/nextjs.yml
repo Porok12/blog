@@ -60,6 +60,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build with Next.js
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
         run: npm run build
       - name: Static HTML export with Next.js
         run: npm run export
