@@ -8,8 +8,7 @@ export interface IArticle {
   slug: string
   path: string
   url: string
-  created_at: string
-  edited_at: string
+  published_at: string
   description: string
   tag_list: Array<string>
   body_markdown?: string
@@ -81,6 +80,10 @@ class ArticleDevto implements ArticleApi {
   async articles(): Promise<IArticle[]> {
     return await this.devto('articles/me')
       .then(response => response.json())
+      .then(response => {
+        console.debug(response)
+        return response
+      })
   }
 
   async article(id: string): Promise<IArticle> {

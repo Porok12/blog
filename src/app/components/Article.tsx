@@ -37,8 +37,8 @@ const Article: NextPage<Props> = (props) => {
 
       <div className="mx-2 mt-4 w-full grow">
         <div className="flex gap-x-2">
-          <time dateTime={meta.created_at} className="text-gray-500 dark:text-gray-200">
-            {new Date(meta.created_at).toLocaleDateString('pl')}
+          <time dateTime={meta.published_at} className="text-gray-500 dark:text-gray-200">
+            {new Date(meta.published_at).toLocaleDateString('pl')}
           </time>
           <div className="flex flex-wrap items-center gap-1.5 text-xs">
             {categories.map(category => (
