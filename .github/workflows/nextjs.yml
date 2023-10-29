@@ -59,9 +59,11 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
         run: npm ci
-      - name: Build with Next.js
+      - name: Load enviroment variables
         env:
           API_KEY: ${{ secrets.API_KEY }}
+        run: echo "API_KEY=$API_KEY" > .env.local
+      - name: Build with Next.js
         run: npm run build
       - name: Static HTML export with Next.js
         run: npm run export
