@@ -1,10 +1,11 @@
 'use client'
 
 import React from 'react'
-import {NextPage} from 'next'
 import Image from 'next/image'
-import {m, LazyMotion} from 'framer-motion'
-import AnimatedText from '@/app/components/AnimatedText'
+import {NextPage} from 'next'
+import {LazyMotion, m} from 'framer-motion'
+import AnimatedStack from '@/app/components/AnimatedStack'
+// import AnimatedText from '@/app/components/AnimatedText'
 import AnimationContainer, {variants} from '@/app/components/AnimationContainer'
 import ScrollProgress from '@/app/components/ScrollProgress'
 import SlideContent from '@/app/components/SlideContent'
@@ -18,28 +19,27 @@ const About: NextPage = () => {
   return (
     <div className="flex flex-col items-center gap-y-8">
 
-      <h2 className="my-4 text-3xl">Whoami</h2>
-
-      <Terminal>
-        <LazyMotion features={loadFeatures}>
-          <div className="h-[100px] w-[80vw] max-w-[500px] ">
-            <span className="text-gray-400">$ </span>
-            <AnimatedText text="Hello world!"/>
-          </div>
-        </LazyMotion>
-      </Terminal>
-
-      Przemysław Papla
-
       <LazyMotion features={loadFeatures}>
-        <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 2}}>
+        <m.div initial={{opacity: 0, rotate: '-15deg'}} animate={{opacity: 1, rotate: 0}} transition={{duration: 2}}>
           <Image
             width={400}
             height={400}
-            src="https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+            src="/1659428254247.jpeg"
+            className="rounded-full"
             alt=""
           />
         </m.div>
+
+        <Terminal title="Whoami">
+          <div className="h-[100px] w-[80vw] max-w-[500px] ">
+            <AnimatedStack>
+              {/*TODO*/}
+            </AnimatedStack>
+          </div>
+        </Terminal>
+      </LazyMotion>
+
+      <LazyMotion features={loadFeatures}>
 
         <ScrollProgress/>
 
