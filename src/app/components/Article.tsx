@@ -14,7 +14,9 @@ interface Props {
 const Article: NextPage<Props> = (props) => {
   const {slug, meta} = props
 
-  const categories: string[] = meta.tags.split(',').map(tag => tag.trim())
+  const categories: string[] = meta.tag_list
+    .map(tag => tag.trim())
+    .filter(tag => tag.length > 0)
 
   return (
     <article className="group relative flex w-full max-w-xl flex-col items-start justify-between rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-slate-900">

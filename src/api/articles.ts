@@ -11,7 +11,6 @@ export interface IArticle {
   created_at: string
   edited_at: string
   description: string
-  tags: string
   tag_list: Array<string>
   body_markdown?: string
   cover_image?: string
@@ -68,13 +67,24 @@ class ArticleLocal implements ArticleApi {
 }
 
 class ArticleDevto implements ArticleApi {
+
+  private devto(url: string): Promise<Response> {
+    return fetch('https://dev.to/api/' + url, {
+      headers: {
+        'accept': 'application/vnd.forem.api-v1+json',
+        'api-key': process.env.API_KEY,
+      },
+      next: {tags: ['articles']},
+    })
+  }
+
   async articles(): Promise<IArticle[]> {
-    return await fetch('https://dev.to/api/articles?username=porok12', {next: {tags: ['articles']}})
+    return await this.devto('articles/me')
       .then(response => response.json())
   }
 
   async article(id: string): Promise<IArticle> {
-    return await fetch(`https://dev.to/api/articles/${id}?username=porok12`, {next: {tags: ['articles']}})
+    return await this.devto(`articles/${id}`)
       .then(response => response.json())
       .then(response => ({...response, body_html: undefined, user: undefined}))
       .then(response => {
@@ -84,13 +94,13 @@ class ArticleDevto implements ArticleApi {
   }
 
   async articlesByTag(tag: string): Promise<IArticle[]> {
-    return await fetch('https://dev.to/api/articles?username=porok12', {next: {tags: ['articles']}})
+    return await this.devto('articles/me')
       .then(response => response.json())
       .then(response => {
         console.debug(response)
         return response
       })
-      .then(articles => articles.filter(article => article.tags.includes(tag)))
+      .then((articles: Array<IArticle>) => articles.filter(article => article.tag_list.includes(tag)))
   }
 }
 

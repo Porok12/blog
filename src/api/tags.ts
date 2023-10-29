@@ -12,11 +12,21 @@ class TagLocal implements TagApi {
 }
 
 class TagDevto implements TagApi {
+
+  private devto(url: string): Promise<Response> {
+    return fetch('https://dev.to/api/' + url, {
+      headers: {
+        'accept': 'application/vnd.forem.api-v1+json',
+        'api-key': process.env.API_KEY,
+      },
+      next: {tags: ['articles']},
+    })
+  }
+
   async tags(): Promise<string[]> {
-    return await fetch('https://dev.to/api/articles?username=porok12', {next: {tags: ['articles']}})
+    return await this.devto('articles/me')
       .then(response => response.json())
-      .then((articles: Array<IArticle>) => articles.map(article => article.tags))
-      .then((tags: string[]) => tags.flatMap(tags => tags.split(', ')))
+      .then((articles: Array<IArticle>) => articles.flatMap(article => article.tag_list))
       .then((tags: string[]) => tags.map(tag => tag.trim()).filter(tag => tag !== ''))
   }
 }
