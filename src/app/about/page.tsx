@@ -1,5 +1,6 @@
 'use client'
 
+import myFace from './1659428254247.jpeg'
 import React from 'react'
 import Image from 'next/image'
 import {NextPage} from 'next'
@@ -11,6 +12,15 @@ import ScrollProgress from '@/app/components/ScrollProgress'
 import SlideContent from '@/app/components/SlideContent'
 import Stack from '@/app/components/Stack'
 import Terminal from '@/app/components/Terminal'
+
+const Carret = () => (
+  <m.div
+    className="h-[20px] w-[10px] bg-white"
+    initial={{opacity: 1}}
+    animate={{opacity: 0}}
+    transition={{repeat: Infinity, duration: 0.1, repeatDelay: 0.5, repeatType: 'reverse'}}
+  />
+)
 
 const loadFeatures = () => import('@/app/utils/features')
   .then(res => res.default)
@@ -24,7 +34,7 @@ const About: NextPage = () => {
           <Image
             width={400}
             height={400}
-            src="/1659428254247.jpeg"
+            src={myFace}
             className="rounded-full"
             alt=""
           />
