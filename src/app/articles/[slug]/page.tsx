@@ -108,7 +108,7 @@ const Page: NextPage<Props> = async ({params}) => {
   return (
     <>
       <article className="prose mx-auto max-w-7xl px-6 dark:prose-invert lg:px-8">
-        <time>{new Date(article.created_at).toLocaleDateString()}</time>
+        <time>{new Date(article.published_at).toLocaleDateString()}</time>
         <h1>{article.title}</h1>
         <Border/>
         <div className="my-16"/>
