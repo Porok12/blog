@@ -3,6 +3,7 @@ import {Inter} from 'next/font/google'
 import Providers from '@/app/providers'
 import NavBar from '@/app/components/NavBar'
 import Footer from '@/app/components/Footer'
+import GoogleAnalytics from '@/app/components/GoogleAnalytics'
 import 'devicon/devicon.min.css'
 import './styles/globals.css'
 
@@ -21,6 +22,7 @@ const RootLayout = ({children}: Props) => {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-gray-50 text-black dark:bg-slate-950 dark:text-white`}>
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (<GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />) : null}
         <div className="flex h-screen flex-col">
           <Providers>
             <NavBar/>
