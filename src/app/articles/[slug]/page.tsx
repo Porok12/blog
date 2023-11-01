@@ -16,17 +16,22 @@ import rehypeSlug from 'rehype-slug'
 import remarkEmoji from 'remark-emoji'
 // import rehypeImageSize from 'rehype-img-size'
 import remarkGfm from 'remark-gfm' // https://github.com/hashicorp/next-mdx-remote/issues/403
+import ShareSection from '@/app/components/ShareSection'
 import CopyButton from '@/app/components/CopyButton'
-// import {
-//   FacebookShareButton,
-//   FacebookIcon,
-// } from 'next-share'
 import ArticleApi from '@/api/articles'
 import Border from '@/app/components/Border'
 import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 
 export const generateStaticParams = async () => {
+  let hostname: string | undefined
+  if (process.env.VERCEL_URL) {
+    hostname = process.env.VERCEL_URL
+  } else if (process.env.HOST_URL) {
+    hostname = process.env.HOST_URL
+  }
+  console.debug('hostname: ' + hostname)
+
   const articles: string[] = [];
   // try {
   //     const pathToPosts = path.join("src", "app", "posts");
@@ -42,6 +47,7 @@ export const generateStaticParams = async () => {
 
   return articles.map((article) => ({
     slug: article,
+    hostname,
   }))
 }
 
@@ -54,7 +60,7 @@ const components: MDXRemoteProps['components'] = {
     return (
       <div className="relative min-h-[300px]">
         {/*height and width are part of the props, so they get automatically passed here with {...props}*/}
-        <Image {...props} fill objectFit="contain" loading="lazy" alt="..." className="rounded"/>
+        <Image {...props} fill style={{objectFit: 'contain'}} loading="lazy" alt="..." className="rounded"/>
       </div>
     )
   },
@@ -95,6 +101,7 @@ const components: MDXRemoteProps['components'] = {
 interface Props {
   params: {
     slug: string
+    hostname?: string
   }
 }
 
@@ -143,15 +150,7 @@ const Page: NextPage<Props> = async ({params}) => {
 
         <div className="my-4">
           <Border/>
-          <div className="flex">
-            {/*<FacebookShareButton*/}
-            {/*  url={'https://github.com/next-share'}*/}
-            {/*  quote={'next-share is a social share buttons for your next React apps.'}*/}
-            {/*  hashtag={'#nextshare'}*/}
-            {/*>*/}
-            {/*  <FacebookIcon size={32} round />*/}
-            {/*</FacebookShareButton>*/}
-          </div>
+          <ShareSection url={params.hostname + '/articles/' + params.slug} />
         </div>
 
       </article>

@@ -63,9 +63,10 @@ jobs:
       - name: Build with Next.js
         env:
           API_KEY: ${{ secrets.API_KEY }}
+          HOST_URL: ${{ secrets.HOST_URL }}
           NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
         run: |
-          echo "API_KEY=$API_KEY" > .env.production
+          echo -e "API_KEY=$API_KEY\nHOST_URL=$HOST_URL\nNEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS" > .env.production
           npm run build
       - name: Static HTML export with Next.js
         run: npm run export
