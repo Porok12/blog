@@ -68,7 +68,7 @@ const About: NextPage = () => {
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
                 className="right-[0%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                I'm familiar with containerization and kubernetes, mainly from the developer side.
+                I&apos;m familiar with containerization and kubernetes, mainly from the developer side.
                 I also have a CKAD certificate, proving my experience.
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-kubernetes-plain" style={{fontSize: 64, color: '#326de6'}}></i>
@@ -84,7 +84,7 @@ const About: NextPage = () => {
                 className="left-[10%] top-[20%] mt-[0px] max-w-[400px]  p-2 lg:left-[25%] lg:top-[50%] lg:mt-[-100px]"
                 // className="top-[50]% md:top-[50]% left-[25%] mt-[-100px] md:left-[25%] md:mt-[-100px]"
               >
-                Backend is my primary interest. I'm experienced Java / Scala developer.
+                Backend is my primary interest. I&apos;m experienced Java / Scala developer.
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-scala-plain" style={{fontSize: 64, color: '#de3423'}}/>
                   <i className="devicon-java-plain" style={{fontSize: 64, color: '#e76f00'}}></i>
@@ -98,7 +98,7 @@ const About: NextPage = () => {
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
                 className="right-[10%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                I'm also familiar with frontend world.
+                I&apos;m also familiar with frontend world.
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-react-plain" style={{fontSize: 48, color: '#61dafb'}}></i>
                   <i className="devicon-nextjs-plain" style={{fontSize: 48, color: '#efefef'}}></i>
