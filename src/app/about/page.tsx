@@ -35,13 +35,13 @@ const About: NextPage = () => {
             width={400}
             height={400}
             src={myFace}
-            className="rounded-full"
+            className="scale-75 rounded-full md:scale-100"
             alt=""
           />
         </m.div>
 
         <Terminal title="Whoami">
-          <div className="h-[100px] w-[80vw] max-w-[500px] ">
+          <div className="min-h-[100px] w-[80vw] max-w-[500px] ">
             <AnimatedStack>
               {/*TODO*/}
             </AnimatedStack>
@@ -66,9 +66,10 @@ const About: NextPage = () => {
                 title="DevOps"
                 active={state === 3}
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
-                className="right-[40%] top-[60%] mt-[0px] lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
+                className="right-[0%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                Hello world!
+                I'm familiar with containerization and kubernetes, mainly from the developer side.
+                I also have a CKAD certificate, proving my experience.
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-kubernetes-plain" style={{fontSize: 64, color: '#326de6'}}></i>
                   <i className="devicon-docker-plain" style={{fontSize: 64, color: '#239ced'}}></i>
@@ -80,14 +81,14 @@ const About: NextPage = () => {
                 title="Backend"
                 active={state === 5}
                 // style={{top: '50%', left: '25%', marginTop: '-100px'}}
-                className="left-[20%] top-[20%] mt-[0px] lg:left-[25%] lg:top-[50%] lg:mt-[-100px]"
+                className="left-[10%] top-[20%] mt-[0px] max-w-[400px]  p-2 lg:left-[25%] lg:top-[50%] lg:mt-[-100px]"
                 // className="top-[50]% md:top-[50]% left-[25%] mt-[-100px] md:left-[25%] md:mt-[-100px]"
               >
-                Hello world!
+                Backend is my primary interest. I'm experienced Java / Scala developer.
                 <div className="mt-4 flex gap-4">
-                  <i className="devicon-scala-plain" style={{fontSize: 80, color: '#de3423'}}/>
-                  <i className="devicon-java-plain" style={{fontSize: 80, color: '#e76f00'}}></i>
-                  <i className="devicon-cplusplus-plain" style={{fontSize: 80, color: '#0181ce'}}></i>
+                  <i className="devicon-scala-plain" style={{fontSize: 64, color: '#de3423'}}/>
+                  <i className="devicon-java-plain" style={{fontSize: 64, color: '#e76f00'}}></i>
+                  <i className="devicon-cplusplus-plain" style={{fontSize: 64, color: '#0181ce'}}></i>
                 </div>
               </SlideContent>
 
@@ -95,14 +96,14 @@ const About: NextPage = () => {
                 title="Frontend"
                 active={state === 7}
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
-                className="right-[25%] top-[60%] mt-[0px] lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
+                className="right-[10%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                Hello world!
+                I'm also familiar with frontend world.
                 <div className="mt-4 flex gap-4">
-                  <i className="devicon-react-plain" style={{fontSize: 64, color: '#61dafb'}}></i>
-                  <i className="devicon-nextjs-plain" style={{fontSize: 64, color: '#efefef'}}></i>
-                  <i className="devicon-angularjs-plain" style={{fontSize: 64, color: '#dd1b16'}}></i>
-                  <i className="devicon-typescript-plain" style={{fontSize: 64, color: '#007acc'}}></i>
+                  <i className="devicon-react-plain" style={{fontSize: 48, color: '#61dafb'}}></i>
+                  <i className="devicon-nextjs-plain" style={{fontSize: 48, color: '#efefef'}}></i>
+                  <i className="devicon-angularjs-plain" style={{fontSize: 48, color: '#dd1b16'}}></i>
+                  <i className="devicon-typescript-plain" style={{fontSize: 48, color: '#007acc'}}></i>
                 </div>
               </SlideContent>
 

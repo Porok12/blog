@@ -65,6 +65,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           HOST_URL: ${{ vars.HOST_URL }}
           NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ vars.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
+          NEXT_PUBLIC_HOST_URL: ${{ vars.HOST_URL }}
         run: |
           echo -e "API_KEY=$API_KEY\nHOST_URL=$HOST_URL\nNEXT_PUBLIC_GOOGLE_ANALYTICS=$NEXT_PUBLIC_GOOGLE_ANALYTICS" > .env.production
           npm run build

@@ -21,7 +21,7 @@ const Stack = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
   return (
     <div
       ref={ref}
-      className={'m-2 flex justify-center ' + className}
+      className={'m-4 flex justify-center ' + className}
       style={{
         ...style,
         width: 500 * size,

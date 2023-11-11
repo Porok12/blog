@@ -24,14 +24,6 @@ import type {MDXRemoteProps} from 'next-mdx-remote/rsc'
 
 
 export const generateStaticParams = async () => {
-  let hostname: string | undefined
-  if (process.env.VERCEL_URL) {
-    hostname = process.env.VERCEL_URL
-  } else if (process.env.HOST_URL) {
-    hostname = process.env.HOST_URL
-  }
-  console.debug('hostname: ' + hostname)
-
   const articles: string[] = [];
   // try {
   //     const pathToPosts = path.join("src", "app", "posts");
@@ -47,12 +39,22 @@ export const generateStaticParams = async () => {
 
   return articles.map((article) => ({
     slug: article,
-    hostname,
   }))
 }
 
 const getData = async (slug: string) => {
   return await ArticleApi.article(slug.toString())
+}
+
+const getHostname = () => {
+  let hostname: string | undefined
+  if (process.env.VERCEL_URL) {
+    hostname = process.env.VERCEL_URL
+  } else if (process.env.NEXT_PUBLIC_HOST_URL) {
+    hostname = process.env.NEXT_PUBLIC_HOST_URL
+  }
+  console.debug('hostname: ' + hostname)
+  return hostname
 }
 
 const components: MDXRemoteProps['components'] = {
@@ -101,12 +103,12 @@ const components: MDXRemoteProps['components'] = {
 interface Props {
   params: {
     slug: string
-    hostname?: string
   }
 }
 
 const Page: NextPage<Props> = async ({params}) => {
   const article = await getData(params.slug)
+  const hostname = getHostname()
 
   if (!article?.body_markdown) {
     notFound()
@@ -150,7 +152,7 @@ const Page: NextPage<Props> = async ({params}) => {
 
         <div className="my-4">
           <Border/>
-          <ShareSection url={params.hostname + '/articles/' + params.slug} />
+          <ShareSection url={hostname + '/articles/' + params.slug} />
         </div>
 
       </article>
