@@ -5,8 +5,9 @@ const nextConfig = {
   basePath: isGithub ? '/blog' : undefined,
   assetPrefix: isGithub ? '/blog/' : undefined,
   // i18n: {
-  //     locales: ['en', 'pl'],
-  //     defaultLocale: 'en',
+  //   locales: ['en'],
+  //   defaultLocale: 'en',
+  //   localeDetection: false,
   // },
   output: 'export',
   // images: {
@@ -32,4 +33,7 @@ const nextConfig = {
 //   },
 // })
 
-module.exports = /*withMDX(*/nextConfig/*)*/
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withNextIntl = require('next-intl/plugin')()
+
+module.exports = /*withMDX(*/withNextIntl(nextConfig)/*)*/

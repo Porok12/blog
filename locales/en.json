@@ -1,0 +1,17 @@
+{
+  "home": {
+    "title": "Embark on a coding journey with me!",
+    "description": "Discover compelling articles covering a variety of programming topics, providing valuable insights from fundamentals to advanced concepts."
+  },
+  "articles": {
+    "title": "Articles"
+  },
+  "tags": {
+    "title": "Tags"
+  },
+  "about": {
+    "devops": "I possess a comprehensive understanding of containerization and Kubernetes, primarily from a developer's perspective. Additionally, my expertise is validated by a CKAD certificate, affirming my practical experience in this domain.",
+    "frontend": "I have robust technical skills in front-end technologies, including HTML, CSS, and JavaScript. Proficient in crafting responsive and visually appealing user interfaces, my expertise ensures a superior user experience through a strong foundation in design principles and functionality.",
+    "backend": "Focused on backend development, I bring extensive experience as a Java and Scala developer, adept at designing and implementing robust solutions. My proficiency in these technologies reflects a commitment to delivering high-quality software solutions in backend development."
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import {NextPage} from 'next'
+import {getTranslations} from 'next-intl/server'
 import Border from '@/app/components/Border'
 import Chips from '@/app/components/Chips'
 import CustomLink from '@/app/components/CustomLink'
@@ -21,10 +22,12 @@ const getData = async () => {
 
 const Tags: NextPage = async () => {
   const tags = await getData()
+  const t = await getTranslations({locale: 'en', namespace: 'tags'})
+
   return (
     <>
       <h2 className="mb-6 text-center text-3xl font-light tracking-tighter sm:text-left sm:text-5xl">
-        Tags
+        {t('title')}
       </h2>
 
       <Border/>

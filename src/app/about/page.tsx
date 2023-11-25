@@ -1,10 +1,5 @@
 'use client'
 
-import myFace from './1659428254247.jpeg'
-import React from 'react'
-import Image from 'next/image'
-import {NextPage} from 'next'
-import {LazyMotion, m} from 'framer-motion'
 import AnimatedStack from '@/app/components/AnimatedStack'
 // import AnimatedText from '@/app/components/AnimatedText'
 import AnimationContainer, {variants} from '@/app/components/AnimationContainer'
@@ -12,6 +7,12 @@ import ScrollProgress from '@/app/components/ScrollProgress'
 import SlideContent from '@/app/components/SlideContent'
 import Stack from '@/app/components/Stack'
 import Terminal from '@/app/components/Terminal'
+import {LazyMotion, m} from 'framer-motion'
+import {NextPage} from 'next'
+import {useTranslations} from 'next-intl'
+import Image from 'next/image'
+import React from 'react'
+import myFace from './1659428254247.jpeg'
 
 const Carret = () => (
   <m.div
@@ -26,9 +27,10 @@ const loadFeatures = () => import('@/app/utils/features')
   .then(res => res.default)
 
 const About: NextPage = () => {
+  const t = useTranslations('about')
+
   return (
     <div className="flex flex-col items-center gap-y-8">
-
       <LazyMotion features={loadFeatures}>
         <m.div initial={{opacity: 0, rotate: '-15deg'}} animate={{opacity: 1, rotate: 0}} transition={{duration: 2}}>
           <Image
@@ -68,8 +70,7 @@ const About: NextPage = () => {
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
                 className="right-[0%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                I&apos;m familiar with containerization and kubernetes, mainly from the developer side.
-                I also have a CKAD certificate, proving my experience.
+                {t('devops')}
                 <div className="mt-4 flex gap-4">
                   <i className="devicon-kubernetes-plain" style={{fontSize: 64, color: '#326de6'}}></i>
                   <i className="devicon-docker-plain" style={{fontSize: 64, color: '#239ced'}}></i>

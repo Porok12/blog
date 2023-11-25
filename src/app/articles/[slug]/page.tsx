@@ -3,6 +3,7 @@ import {NextPage} from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import {notFound} from 'next/navigation'
+import {getTranslations} from 'next-intl/server'
 import {MDXRemote} from 'next-mdx-remote/rsc'
 import '@/styles/highlight-js/github-dark.css'
 import '@/styles/highlight-js/github.css'
@@ -109,6 +110,7 @@ interface Props {
 const Page: NextPage<Props> = async ({params}) => {
   const article = await getData(params.slug)
   const hostname = getHostname()
+  const t = await getTranslations({locale: 'en', namespace: 'articles'})
 
   if (!article?.body_markdown) {
     notFound()

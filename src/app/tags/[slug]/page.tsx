@@ -1,6 +1,7 @@
 import React from 'react'
 import {NextPage} from 'next'
 import {notFound} from 'next/navigation'
+import {getTranslations} from 'next-intl/server'
 import Article from '@/app/components/Article'
 import Border from '@/app/components/Border'
 import ArticleApi from '@/api/articles'
@@ -29,6 +30,7 @@ interface Props {
 
 const Tags: NextPage<Props> = async (props) => {
   const articles = await getData(props.params.slug)
+  const t = await getTranslations({locale: 'en', namespace: 'tags'})
 
   if (!props.params.slug) {
     notFound()
