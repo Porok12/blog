@@ -22,5 +22,4 @@ Code examples are located here https://github.com/Porok12/blog-examples
 * https://nextjs.org/docs/app/building-your-application/data-fetching
 * https://nextjs.org/docs/app/api-reference/functions/generate-static-params
 * https://wallis.dev/blog/next-js-basepath-and-assetprefix
-* https://wallis.dev/blog/rewriting-my-website-with-a-devto-cms
-* 
+* https://wallis.dev/blog/rewriting-my-website-with-a-devto-cms 
