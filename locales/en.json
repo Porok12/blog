@@ -1,17 +1,33 @@
 {
   "home": {
     "title": "Embark on a coding journey with me!",
-    "description": "Discover compelling articles covering a variety of programming topics, providing valuable insights from fundamentals to advanced concepts."
+    "description": "Discover exciting articles covering a variety of programming topics, providing valuable insights from fundamentals to advanced concepts."
   },
   "articles": {
     "title": "Articles"
   },
   "tags": {
-    "title": "Tags"
+    "title": "Tags",
+    "tag": "Tag"
   },
   "about": {
-    "devops": "I possess a comprehensive understanding of containerization and Kubernetes, primarily from a developer's perspective. Additionally, my expertise is validated by a CKAD certificate, affirming my practical experience in this domain.",
-    "frontend": "I have robust technical skills in front-end technologies, including HTML, CSS, and JavaScript. Proficient in crafting responsive and visually appealing user interfaces, my expertise ensures a superior user experience through a strong foundation in design principles and functionality.",
-    "backend": "Focused on backend development, I bring extensive experience as a Java and Scala developer, adept at designing and implementing robust solutions. My proficiency in these technologies reflects a commitment to delivering high-quality software solutions in backend development."
+    "terminal": {
+      "title": "Whoami",
+      "line1": "Hello, I'm Przemysław Papla \uD83D\uDC4B",
+      "line2": "Programming is my passion, I don't limit myself to one language.",
+      "line3": "Full-stack is my element!"
+    },
+    "stack": {
+      "title": "Tech Stack",
+      "devops": "I have a solid knowledge of containerization and Kubernetes from a developer's perspective, supported by a CKAD certificate validating my practical expertise.",
+      "backend": "Focused on backend development, I bring extensive experience as a Java and Scala developer, designing and implementing robust solutions. My proficiency reflects a commitment to delivering high-quality software.",
+      "frontend": "I have robust technical skills in front-end technologies. Proficient in creating visually appealing interfaces, my expertise provides an excellent user experience with a solid foundation in design principles and functionality."
+    }
+  },
+  "common": {
+    "rights": "©2023 Przemysław Papla | All Rights Reserved",
+    "home": "Home",
+    "tags": "Tags",
+    "about": "About"
   }
 }

@@ -12,9 +12,9 @@ module.exports = {
         sans: 'Segoe UI',
       },
       colors: {
-        'primary': '#1fb6ff',
+        primary: '#1fb6ff',
       },
-      typography: ({theme}) => ({
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             '--tw-prose-pre-bg': theme('colors.gray[100]'),

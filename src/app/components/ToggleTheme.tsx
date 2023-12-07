@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-import {useTheme} from 'next-themes'
-import {MoonIcon, SunIcon} from '@heroicons/react/24/outline'
+import { useTheme } from 'next-themes'
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
 import IconButton from '@/app/components/IconButton'
 
 const ToggleTheme = () => {
-  const {resolvedTheme, setTheme} = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const lightTheme = resolvedTheme === 'light'
 
   const toggleTheme = () => {

@@ -1,67 +1,52 @@
 'use client'
 
+import React from 'react'
+import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
+import { LazyMotion, m } from 'framer-motion'
+import AnimatedAvatar from '@/app/components/AnimatedAvatar'
 import AnimatedStack from '@/app/components/AnimatedStack'
 // import AnimatedText from '@/app/components/AnimatedText'
-import AnimationContainer, {variants} from '@/app/components/AnimationContainer'
+import AnimationContainer, {
+  variants,
+} from '@/app/components/AnimationContainer'
 import ScrollProgress from '@/app/components/ScrollProgress'
 import SlideContent from '@/app/components/SlideContent'
 import Stack from '@/app/components/Stack'
 import Terminal from '@/app/components/Terminal'
-import {LazyMotion, m} from 'framer-motion'
-import {NextPage} from 'next'
-import {useTranslations} from 'next-intl'
-import Image from 'next/image'
-import React from 'react'
-import myFace from './1659428254247.jpeg'
 
-const Carret = () => (
-  <m.div
-    className="h-[20px] w-[10px] bg-white"
-    initial={{opacity: 1}}
-    animate={{opacity: 0}}
-    transition={{repeat: Infinity, duration: 0.1, repeatDelay: 0.5, repeatType: 'reverse'}}
-  />
-)
-
-const loadFeatures = () => import('@/app/utils/features')
-  .then(res => res.default)
+const loadFeatures = () =>
+  import('@/app/utils/features').then((res) => res.default)
 
 const About: NextPage = () => {
+  // const t = await getTranslations('about')
   const t = useTranslations('about')
 
   return (
     <div className="flex flex-col items-center gap-y-8">
       <LazyMotion features={loadFeatures}>
-        <m.div initial={{opacity: 0, rotate: '-15deg'}} animate={{opacity: 1, rotate: 0}} transition={{duration: 2}}>
-          <Image
-            width={400}
-            height={400}
-            src={myFace}
-            className="scale-75 rounded-full md:scale-100"
-            alt=""
-          />
-        </m.div>
+        <AnimatedAvatar />
 
-        <Terminal title="Whoami">
+        <Terminal title={t('terminal.title')}>
           <div className="min-h-[100px] w-[80vw] max-w-[500px] ">
-            <AnimatedStack>
-              {/*TODO*/}
-            </AnimatedStack>
+            <AnimatedStack
+              line1={t('terminal.line1')}
+              line2={t('terminal.line2')}
+              line3={t('terminal.line3')}
+            />
           </div>
         </Terminal>
-      </LazyMotion>
 
-      <LazyMotion features={loadFeatures}>
-
-        <ScrollProgress/>
+        <ScrollProgress />
 
         <AnimationContainer>
           {(state) => (
             <>
               <SlideContent
-                title={<h2 className="text-3xl">Tech Stack</h2>}
+                title={<h2 className="text-3xl">{t('stack.title')}</h2>}
                 active={state > 1 && state < 9}
-                style={{top: '4%', right: '50%', marginRight: '-80px'}}
+                style={{ top: '4%', right: '50%', marginRight: '-80px' }}
               />
 
               <SlideContent
@@ -70,11 +55,20 @@ const About: NextPage = () => {
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
                 className="right-[0%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                {t('devops')}
+                {t('stack.devops')}
                 <div className="mt-4 flex gap-4">
-                  <i className="devicon-kubernetes-plain" style={{fontSize: 64, color: '#326de6'}}></i>
-                  <i className="devicon-docker-plain" style={{fontSize: 64, color: '#239ced'}}></i>
-                  <i className="devicon-linux-plain" style={{fontSize: 64, color: '#e8e8e8'}}></i>
+                  <i
+                    className="devicon-kubernetes-plain"
+                    style={{ fontSize: 64, color: '#326de6' }}
+                  ></i>
+                  <i
+                    className="devicon-docker-plain"
+                    style={{ fontSize: 64, color: '#239ced' }}
+                  ></i>
+                  <i
+                    className="devicon-linux-plain"
+                    style={{ fontSize: 64, color: '#e8e8e8' }}
+                  ></i>
                 </div>
               </SlideContent>
 
@@ -85,11 +79,20 @@ const About: NextPage = () => {
                 className="left-[10%] top-[20%] mt-[0px] max-w-[400px]  p-2 lg:left-[25%] lg:top-[50%] lg:mt-[-100px]"
                 // className="top-[50]% md:top-[50]% left-[25%] mt-[-100px] md:left-[25%] md:mt-[-100px]"
               >
-                Backend is my primary interest. I&apos;m experienced Java / Scala developer.
+                {t('stack.backend')}
                 <div className="mt-4 flex gap-4">
-                  <i className="devicon-scala-plain" style={{fontSize: 64, color: '#de3423'}}/>
-                  <i className="devicon-java-plain" style={{fontSize: 64, color: '#e76f00'}}></i>
-                  <i className="devicon-cplusplus-plain" style={{fontSize: 64, color: '#0181ce'}}></i>
+                  <i
+                    className="devicon-scala-plain"
+                    style={{ fontSize: 64, color: '#de3423' }}
+                  />
+                  <i
+                    className="devicon-java-plain"
+                    style={{ fontSize: 64, color: '#e76f00' }}
+                  ></i>
+                  <i
+                    className="devicon-cplusplus-plain"
+                    style={{ fontSize: 64, color: '#0181ce' }}
+                  ></i>
                 </div>
               </SlideContent>
 
@@ -99,12 +102,24 @@ const About: NextPage = () => {
                 // style={{top: '50%', right: '25%', marginTop: '-100px'}}
                 className="right-[10%] top-[60%] mt-[0px] max-w-[400px] p-2 lg:right-[25%] lg:top-[50%] lg:mt-[-100px]"
               >
-                I&apos;m also familiar with frontend world.
+                {t('stack.frontend')}
                 <div className="mt-4 flex gap-4">
-                  <i className="devicon-react-plain" style={{fontSize: 48, color: '#61dafb'}}></i>
-                  <i className="devicon-nextjs-plain" style={{fontSize: 48, color: '#efefef'}}></i>
-                  <i className="devicon-angularjs-plain" style={{fontSize: 48, color: '#dd1b16'}}></i>
-                  <i className="devicon-typescript-plain" style={{fontSize: 48, color: '#007acc'}}></i>
+                  <i
+                    className="devicon-react-plain"
+                    style={{ fontSize: 48, color: '#61dafb' }}
+                  ></i>
+                  <i
+                    className="devicon-nextjs-plain"
+                    style={{ fontSize: 48, color: '#efefef' }}
+                  ></i>
+                  <i
+                    className="devicon-angularjs-plain"
+                    style={{ fontSize: 48, color: '#dd1b16' }}
+                  ></i>
+                  <i
+                    className="devicon-typescript-plain"
+                    style={{ fontSize: 48, color: '#007acc' }}
+                  ></i>
                 </div>
               </SlideContent>
 
@@ -119,16 +134,16 @@ const About: NextPage = () => {
                   }}
                   childrenVariants={variants}
                   variants={{
-                    '0': {x: 0},
-                    '1': {x: 0},
-                    '2': {x: '-75%'},
-                    '3': {x: '-75%'},
-                    '4': {x: '75%'},
-                    '5': {x: '75%'},
-                    '6': {x: '-75%'},
-                    '7': {x: '-75%'},
-                    '8': {x: 0},
-                    '9': {x: 0},
+                    '0': { x: 0 },
+                    '1': { x: 0 },
+                    '2': { x: '-75%' },
+                    '3': { x: '-75%' },
+                    '4': { x: '75%' },
+                    '5': { x: '75%' },
+                    '6': { x: '-75%' },
+                    '7': { x: '-75%' },
+                    '8': { x: 0 },
+                    '9': { x: 0 },
                   }}
                 />
                 <Stack
@@ -141,16 +156,16 @@ const About: NextPage = () => {
                   }}
                   childrenVariants={variants}
                   variants={{
-                    '0': {y: 0},
-                    '1': {y: 0},
-                    '2': {y: '-50%'},
-                    '3': {y: '-50%'},
-                    '4': {y: '60%'},
-                    '5': {y: '60%'},
-                    '6': {y: '-50%'},
-                    '7': {y: '-50%'},
-                    '8': {y: 0},
-                    '9': {y: 0},
+                    '0': { y: 0 },
+                    '1': { y: 0 },
+                    '2': { y: '-50%' },
+                    '3': { y: '-50%' },
+                    '4': { y: '60%' },
+                    '5': { y: '60%' },
+                    '6': { y: '-50%' },
+                    '7': { y: '-50%' },
+                    '8': { y: 0 },
+                    '9': { y: 0 },
                   }}
                 />
               </div>

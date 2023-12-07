@@ -1,5 +1,5 @@
-import {m, useInView, useScroll, useTransform, Variants} from 'framer-motion'
-import {CSSProperties, useEffect, useRef, useState} from 'react'
+import { m, useInView, useScroll, useTransform, Variants } from 'framer-motion'
+import { CSSProperties, useEffect, useRef, useState } from 'react'
 
 const styles = (scroll: number): CSSProperties => ({
   position: 'fixed',
@@ -19,7 +19,7 @@ const styles = (scroll: number): CSSProperties => ({
   // animationFillMode: 'both',
 })
 
-const variants: Variants = ({
+const variants: Variants = {
   '0': {
     scale: 1,
   },
@@ -34,12 +34,12 @@ const variants: Variants = ({
     scale: 2.5,
     x: -200,
   },
-})
+}
 
 const FixedScroll = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, {amount: 'some', margin: '0px'})
-  const {scrollYProgress} = useScroll({
+  const isInView = useInView(ref, { amount: 'some', margin: '0px' })
+  const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
     // container: ref,
@@ -50,10 +50,10 @@ const FixedScroll = () => {
 
   const [state, setState] = useState(0)
   useEffect(() => {
-    return scrollYProgress.on('change', v => {
+    return scrollYProgress.on('change', (v) => {
       if (v <= 0.25) {
         setState(0)
-      } else if (v < 0.50) {
+      } else if (v < 0.5) {
         setState(1)
       } else if (v < 0.75) {
         setState(2)
@@ -72,9 +72,9 @@ const FixedScroll = () => {
   // console.log(display)
 
   return (
-    <div ref={ref} className="h-[2000px] w-full flex,justify-center">
+    <div ref={ref} className="flex,justify-center h-[2000px] w-full">
       {/*className="h-[1000px] w-full" style={{ overflow: 'scroll' }}*/}
-      <div style={{display: display ? 'block' : 'none'}}>
+      <div style={{ display: display ? 'block' : 'none' }}>
         <m.svg
           width="100"
           height="100"
@@ -89,7 +89,8 @@ const FixedScroll = () => {
         >
           <m.path
             fill="#fff"
-            d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z"/>
+            d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z"
+          />
         </m.svg>
       </div>
     </div>

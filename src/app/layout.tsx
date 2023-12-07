@@ -1,13 +1,31 @@
+import { useTranslations } from 'next-intl'
+import { unstable_setRequestLocale } from 'next-intl/server'
 import React from 'react'
-import {Inter} from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Providers from '@/app/providers'
 import NavBar from '@/app/components/NavBar'
 import Footer from '@/app/components/Footer'
 import GoogleAnalytics from '@/app/components/GoogleAnalytics'
+import type { LinkType } from '@/app/components/NavBar'
 import 'devicon/devicon.min.css'
 import './styles/globals.css'
 
-const inter = Inter({subsets: ['latin']})
+const links: Array<LinkType> = [
+  {
+    href: '/',
+    title: 'home',
+  },
+  {
+    href: '/tags',
+    title: 'tags',
+  },
+  {
+    href: '/about',
+    title: 'about',
+  },
+]
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Dev Blog',
@@ -15,25 +33,33 @@ export const metadata = {
 }
 
 interface Props {
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
-const RootLayout = ({children}: Props) => {
+const RootLayout = ({ children }: Props) => {
+  unstable_setRequestLocale('en')
+
+  const t = useTranslations('common')
+
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-50 text-black dark:bg-slate-950 dark:text-white`}>
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (<GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />) : null}
+      <body
+        className={`${inter.className} bg-gray-50 text-black dark:bg-slate-950 dark:text-white`}
+      >
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+          <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
         <div className="flex h-screen flex-col">
           <Providers>
-            <NavBar/>
+            <NavBar
+              links={links.map((link) => ({ ...link, title: t(link.title) }))}
+            />
             <div className="grow">
               <div className="py-24 sm:py-32">
-                <div className="container mx-auto">
-                  {children}
-                </div>
+                <div className="container mx-auto">{children}</div>
               </div>
             </div>
-            <Footer/>
+            <Footer rights={t('rights')} />
           </Providers>
         </div>
       </body>

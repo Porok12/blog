@@ -1,11 +1,11 @@
-import {m, useInView, useScroll, Variants} from 'framer-motion'
-import React, {useEffect, useRef, useState} from 'react'
+import { m, useInView, useScroll, Variants } from 'framer-motion'
+import React, { useEffect, useRef, useState } from 'react'
 import Stack from '@/app/components/Stack'
 import SlideContent from '@/app/components/SlideContent'
 
 export const ANIMATION_STEPS = 9
 
-export const variants: Record<number, Variants> = ({
+export const variants: Record<number, Variants> = {
   1: {
     '0': {
       scale: 0.5,
@@ -132,26 +132,24 @@ export const variants: Record<number, Variants> = ({
       opacity: 0,
     },
   },
-})
+}
 
 interface Props {
   children: (state: number) => React.ReactNode
 }
 
 const AnimationContainer = (props: Props) => {
-  const {
-    children,
-  } = props
+  const { children } = props
 
   const ref = useRef(null)
-  const {scrollYProgress} = useScroll({
+  const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end end'],
   })
 
   const [state, setState] = useState(0)
   useEffect(() => {
-    return scrollYProgress.on('change', v => {
+    return scrollYProgress.on('change', (v) => {
       const stepLength = 1 / ANIMATION_STEPS
       setState(Math.floor(v / stepLength))
     })
@@ -164,10 +162,7 @@ const AnimationContainer = (props: Props) => {
   // }, [isInView])
 
   return (
-    <div
-      ref={ref}
-      className="my-64 h-[3000px] w-full"
-    >
+    <div ref={ref} className="my-64 h-[3000px] w-full">
       {children(state)}
     </div>
   )

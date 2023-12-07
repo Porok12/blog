@@ -1,14 +1,24 @@
-import React, {PropsWithChildren} from 'react'
+import React, { PropsWithChildren } from 'react'
 import Link from 'next/link'
 import Border from '@/app/components/Border'
 
-type Props = PropsWithChildren
+interface Props extends PropsWithChildren {
+  rights: string
+}
 
 const Footer = (props: Props) => {
+  const { rights } = props
   return (
     <div>
-      <svg xmlns="http://www.w3.org/2000/svg" className="mb-[-1px]" viewBox="0 0 50 2">
-        <path d="M 0 0 V 2 H 50" className="fill-gray-200 dark:fill-slate-800" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="mb-[-1px]"
+        viewBox="0 0 50 2"
+      >
+        <path
+          d="M 0 0 V 2 H 50"
+          className="fill-gray-200 dark:fill-slate-800"
+        />
       </svg>
       <footer className="bg-gray-200 dark:bg-slate-800">
         <div className="container mx-auto flex h-48 flex-col justify-end py-8">
@@ -21,9 +31,7 @@ const Footer = (props: Props) => {
             </Link>
           </div>
           <Border />
-          <div className="mt-4 text-center text-sm sm:text-base">
-            ©2023 Przemysław Papla | All Rights Reserved
-          </div>
+          <div className="mt-4 text-center text-sm sm:text-base">{rights}</div>
         </div>
       </footer>
     </div>

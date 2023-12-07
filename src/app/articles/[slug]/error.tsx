@@ -1,13 +1,13 @@
 'use client'
 
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 
 interface Props {
-    error: Error
-    reset: () => void
+  error: Error
+  reset: () => void
 }
 
-export default function Error({error, reset}: Props) {
+export default function Error({ error, reset }: Props) {
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -15,11 +15,7 @@ export default function Error({error, reset}: Props) {
   return (
     <>
       <h2>Something went wrong!</h2>
-      <button
-        onClick={() => reset()}
-      >
-        Try again
-      </button>
+      <button onClick={() => reset()}>Try again</button>
     </>
   )
 }

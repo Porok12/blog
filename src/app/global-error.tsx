@@ -1,8 +1,8 @@
 'use client'
 
 interface Props {
-    error: Error
-    reset: () => void
+  error: Error
+  reset: () => void
 }
 
 const GlobalError = ({ error, reset }: Props) => {

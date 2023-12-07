@@ -29,15 +29,15 @@ class ArticleLocal implements ArticleApi {
       const pathToPosts = path.join('src', 'app', 'posts')
       const posts = fs.readdirSync(pathToPosts)
       return posts
-        .filter(fileName => {
+        .filter((fileName) => {
           const filePath = path.join(pathToPosts, fileName)
           return !fs.lstatSync(filePath).isDirectory()
         })
-        .map(fileName => {
+        .map((fileName) => {
           const slug = fileName.replace('.mdx', '')
           const filePath = path.join(pathToPosts, fileName)
           const fileContents = fs.readFileSync(filePath, 'utf-8')
-          const {data} = matter(fileContents)
+          const { data } = matter(fileContents)
           data.slug = slug
           return data as IArticle
         })
@@ -50,8 +50,14 @@ class ArticleLocal implements ArticleApi {
   async article(slug: string): Promise<IArticle> {
     try {
       const pathToPosts = path.join('src', 'app', 'posts')
-      const fileContents = fs.readFileSync(path.join(pathToPosts, `${slug}.mdx`), 'utf8')
-      const {data, content} = matter(fileContents) as unknown as { content: string, data: IArticle }
+      const fileContents = fs.readFileSync(
+        path.join(pathToPosts, `${slug}.mdx`),
+        'utf8',
+      )
+      const { data, content } = matter(fileContents) as unknown as {
+        content: string
+        data: IArticle
+      }
       data.body_markdown = content
       return data
     } catch (e) {
@@ -66,7 +72,6 @@ class ArticleLocal implements ArticleApi {
 }
 
 class ArticleDevto implements ArticleApi {
-
   private devto(url: string): Promise<Response> {
     console.debug('NODE_ENV: ' + process.env.NODE_ENV)
     if (!process.env.API_KEY) {
@@ -74,17 +79,17 @@ class ArticleDevto implements ArticleApi {
     }
     return fetch('https://dev.to/api/' + url, {
       headers: {
-        'accept': 'application/vnd.forem.api-v1+json',
+        accept: 'application/vnd.forem.api-v1+json',
         'api-key': process.env.API_KEY,
       },
-      next: {tags: ['articles']},
+      next: { tags: ['articles'] },
     })
   }
 
   async articles(): Promise<IArticle[]> {
     return await this.devto('articles/me')
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         console.debug(response)
         return response
       })
@@ -92,9 +97,13 @@ class ArticleDevto implements ArticleApi {
 
   async article(id: string): Promise<IArticle> {
     return await this.devto(`articles/${id}`)
-      .then(response => response.json())
-      .then(response => ({...response, body_html: undefined, user: undefined}))
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => ({
+        ...response,
+        body_html: undefined,
+        user: undefined,
+      }))
+      .then((response) => {
         console.debug(response)
         return response
       })
@@ -102,12 +111,14 @@ class ArticleDevto implements ArticleApi {
 
   async articlesByTag(tag: string): Promise<IArticle[]> {
     return await this.devto('articles/me')
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         console.debug(response)
         return response
       })
-      .then((articles: Array<IArticle>) => articles.filter(article => article.tag_list.includes(tag)))
+      .then((articles: Array<IArticle>) =>
+        articles.filter((article) => article.tag_list.includes(tag)),
+      )
   }
 }
 

@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import {
   EmailIcon,
   EmailShareButton,
@@ -9,33 +8,26 @@ import {
   LinkedinIcon,
   LinkedinShareButton,
 } from 'next-share'
-
+import React from 'react'
 
 interface Props {
   url: string
 }
 
 const ShareSection = (props: Props) => {
-  const {url} = props
+  const { url } = props
 
   return (
     <div className="my-4 flex justify-end gap-x-2">
-
-      <LinkedinShareButton
-        url={url}
-      >
+      <LinkedinShareButton url={url}>
         <LinkedinIcon size={32} round />
       </LinkedinShareButton>
 
-      <FacebookShareButton
-        url={url}
-      >
+      <FacebookShareButton url={url}>
         <FacebookIcon size={32} round />
       </FacebookShareButton>
 
-      <EmailShareButton
-        url={url}
-      >
+      <EmailShareButton url={url}>
         <EmailIcon size={32} round />
       </EmailShareButton>
     </div>

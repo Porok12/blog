@@ -1,6 +1,5 @@
-import {getRequestConfig} from 'next-intl/server'
+import { getRequestConfig } from 'next-intl/server'
 
-export default getRequestConfig(async ({locale}) => ({
-  timeZone: 'Europe/Warsaw',
-  messages: (await import(`./locales/${locale}.json`)).default,
+export default getRequestConfig(async ({ locale }) => ({
+  messages: (await import('./locales/en.json')).default,
 }))

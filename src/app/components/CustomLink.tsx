@@ -1,8 +1,8 @@
-import Link, {LinkProps} from 'next/link'
-import {PropsWithChildren} from 'react'
+import Link, { LinkProps } from 'next/link'
+import { PropsWithChildren } from 'react'
 
 interface Props<T> extends LinkProps<T>, PropsWithChildren {
-    as: any;
+  as: any
 }
 
 const CustomLink = (props: Props<any>) => {
@@ -10,9 +10,7 @@ const CustomLink = (props: Props<any>) => {
 
   return (
     <Link href={href} passHref className="clickable">
-      <Component>
-        {children}
-      </Component>
+      <Component>{children}</Component>
     </Link>
   )
 }

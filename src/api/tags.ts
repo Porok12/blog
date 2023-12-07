@@ -1,8 +1,7 @@
-import type {IArticle} from '@/api/articles'
-
+import type { IArticle } from '@/api/articles'
 
 export abstract class TagApi {
-  abstract tags(): Promise<string[]>;
+  abstract tags(): Promise<string[]>
 }
 
 class TagLocal implements TagApi {
@@ -12,22 +11,25 @@ class TagLocal implements TagApi {
 }
 
 class TagDevto implements TagApi {
-
   private devto(url: string): Promise<Response> {
     return fetch('https://dev.to/api/' + url, {
       headers: {
-        'accept': 'application/vnd.forem.api-v1+json',
+        accept: 'application/vnd.forem.api-v1+json',
         'api-key': process.env.API_KEY,
       },
-      next: {tags: ['articles']},
+      next: { tags: ['articles'] },
     })
   }
 
   async tags(): Promise<string[]> {
     return await this.devto('articles/me')
-      .then(response => response.json())
-      .then((articles: Array<IArticle>) => articles.flatMap(article => article.tag_list))
-      .then((tags: string[]) => tags.map(tag => tag.trim()).filter(tag => tag !== ''))
+      .then((response) => response.json())
+      .then((articles: Array<IArticle>) =>
+        articles.flatMap((article) => article.tag_list),
+      )
+      .then((tags: string[]) =>
+        tags.map((tag) => tag.trim()).filter((tag) => tag !== ''),
+      )
   }
 }
 
