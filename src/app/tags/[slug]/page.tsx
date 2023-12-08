@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import Article from '@/app/components/Article'
 import Border from '@/app/components/Border'
-import ArticleApi from '@/api/articles'
-import TagApi from '@/api/tags'
+import { default as ArticleApi } from '@/api/articles'
+import { default as TagApi } from '@/api/tags'
 
 export const generateStaticParams = async () => {
   const tags: string[] = await TagApi.tags()

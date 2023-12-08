@@ -5,7 +5,7 @@ interface Props {
   reset: () => void
 }
 
-const GlobalError = ({ error, reset }: Props) => {
+const GlobalError = ({ reset }: Props) => {
   return (
     <html>
       <body>

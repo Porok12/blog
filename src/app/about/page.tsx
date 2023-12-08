@@ -3,11 +3,9 @@
 import React from 'react'
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
-import { LazyMotion, m } from 'framer-motion'
+import { LazyMotion } from 'framer-motion'
 import AnimatedAvatar from '@/app/components/AnimatedAvatar'
 import AnimatedStack from '@/app/components/AnimatedStack'
-// import AnimatedText from '@/app/components/AnimatedText'
 import AnimationContainer, {
   variants,
 } from '@/app/components/AnimationContainer'

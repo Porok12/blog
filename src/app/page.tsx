@@ -1,6 +1,6 @@
 import React from 'react'
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
-import ArticleApi, { IArticle } from '@/api/articles'
+import { default as ArticleApi, IArticle } from '@/api/articles'
 import Article from '@/app/components/Article'
 import Border from '@/app/components/Border'
 

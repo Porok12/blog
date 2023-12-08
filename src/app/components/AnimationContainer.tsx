@@ -1,7 +1,5 @@
-import { m, useInView, useScroll, Variants } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
-import Stack from '@/app/components/Stack'
-import SlideContent from '@/app/components/SlideContent'
+import { useScroll, Variants } from 'framer-motion'
 
 export const ANIMATION_STEPS = 9
 

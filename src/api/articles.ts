@@ -90,7 +90,7 @@ class ArticleDevto implements ArticleApi {
     return await this.devto('articles/me')
       .then((response) => response.json())
       .then((response) => {
-        console.debug(response)
+        //console.debug(response)
         return response
       })
   }
@@ -104,7 +104,7 @@ class ArticleDevto implements ArticleApi {
         user: undefined,
       }))
       .then((response) => {
-        console.debug(response)
+        //console.debug(response)
         return response
       })
   }
@@ -113,7 +113,7 @@ class ArticleDevto implements ArticleApi {
     return await this.devto('articles/me')
       .then((response) => response.json())
       .then((response) => {
-        console.debug(response)
+        //console.debug(response)
         return response
       })
       .then((articles: Array<IArticle>) =>

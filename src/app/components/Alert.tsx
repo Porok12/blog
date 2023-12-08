@@ -1,10 +1,8 @@
 import { PropsWithChildren } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
-type Props = PropsWithChildren
-
-const Alert = (props: Props) => {
-  const { children } = props
+const Alert = (props: PropsWithChildren) => {
+  const {} = props
 
   return (
     <div

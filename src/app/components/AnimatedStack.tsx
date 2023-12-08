@@ -1,8 +1,7 @@
 // 'use client'
 
-import { m, Variants, stagger } from 'framer-motion'
-import React, { PropsWithChildren } from 'react'
-// import AnimatedText from '@/app/components/AnimatedText'
+import { m, Variants } from 'framer-motion'
+import React from 'react'
 
 const parentVariant: Variants = {
   initial: { opacity: 0 },

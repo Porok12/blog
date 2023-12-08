@@ -1,26 +1,25 @@
-import React, { Suspense } from 'react'
-import { NextPage } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
-import { MDXRemote } from 'next-mdx-remote/rsc'
-import '@/styles/highlight-js/github-dark.css'
-import '@/styles/highlight-js/github.css'
 import { LinkIcon } from '@heroicons/react/24/solid'
 import rehypeToc from '@jsdevtools/rehype-toc'
 // import rehypeKatex from 'rehype-katex'
 // import rehypeDocument from 'rehype-document'
 import scala from 'highlight.js/lib/languages/scala'
+import { NextPage } from 'next'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import '@/styles/highlight-js/github-dark.css'
+import '@/styles/highlight-js/github.css'
+import Image from 'next/image'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import React, { Suspense } from 'react'
 import rehypeHighlight from 'rehype-highlight' // 7.0.0 is problematic
 import rehypeSlug from 'rehype-slug'
 import remarkEmoji from 'remark-emoji'
 // import rehypeImageSize from 'rehype-img-size'
 import remarkGfm from 'remark-gfm' // https://github.com/hashicorp/next-mdx-remote/issues/403
-import ShareSection from '@/app/components/ShareSection'
-import CopyButton from '@/app/components/CopyButton'
-import ArticleApi from '@/api/articles'
+import { default as ArticleApi } from '@/api/articles'
 import Border from '@/app/components/Border'
+import CopyButton from '@/app/components/CopyButton'
+import ShareSection from '@/app/components/ShareSection'
 import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 export const generateStaticParams = async () => {
@@ -114,7 +113,6 @@ interface Props {
 const Page: NextPage<Props> = async ({ params }) => {
   const article = await getData(params.slug)
   const hostname = getHostname()
-  const t = await getTranslations({ locale: 'en', namespace: 'articles' })
 
   if (!article?.body_markdown) {
     notFound()

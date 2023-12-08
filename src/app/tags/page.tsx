@@ -1,10 +1,10 @@
 import React from 'react'
 import { NextPage } from 'next'
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server'
+import { getTranslations } from 'next-intl/server'
 import Border from '@/app/components/Border'
 import Chips from '@/app/components/Chips'
 import CustomLink from '@/app/components/CustomLink'
-import TagApi from '@/api/tags'
+import { default as TagApi } from '@/api/tags'
 
 const getData = async () => {
   const tags = await TagApi.tags()

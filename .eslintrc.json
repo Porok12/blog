@@ -1,5 +1,7 @@
 {
   "extends": [
+    "next",
+    "prettier",
     "next/core-web-vitals",
     "plugin:import/recommended",
     "plugin:tailwindcss/recommended",
@@ -20,7 +22,7 @@
     "react/jsx-indent": ["warn", 2],
     "react/display-name": "off",
     "tailwindcss/no-custom-classname": "off",
-    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "warn",
     "@typescript-eslint/no-empty-function": "warn",
     "import/order": [

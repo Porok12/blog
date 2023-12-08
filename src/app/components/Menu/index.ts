@@ -3,7 +3,9 @@
 import Menu from './Menu'
 import MenuItem from './MenuItem'
 
-export default {
+const Export = {
   Menu,
   MenuItem,
 }
+
+export default Export

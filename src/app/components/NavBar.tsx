@@ -1,16 +1,11 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import React from 'react'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Route } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import React from 'react'
 import ToggleTheme from '@/app/components/ToggleTheme'
-import ThemeMenu from '@/app/components/ThemeMenu'
-import Button from '@/app/components/Button'
-import classNames from '@/app/utils/classNames'
 
 export interface LinkType {
   href: Route

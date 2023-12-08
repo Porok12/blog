@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react'
-import { MoonIcon } from '@heroicons/react/24/outline'
 import classNames from '@/app/utils/classNames'
 
 interface Props extends PropsWithChildren {
@@ -9,8 +8,6 @@ interface Props extends PropsWithChildren {
   StartIcon?: any
   EndIcon?: any
 }
-
-const styles = {}
 
 const Button = (props: Props) => {
   const { children, fullwidth, StartIcon, EndIcon } = props
