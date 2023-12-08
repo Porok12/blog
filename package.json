@@ -8,7 +8,6 @@
     "build": "next build",
     "start": "next start",
     "serve": "npx serve@latest out",
-    "export": "next export",
     "lint": "next lint",
     "sync-puml": "java -jar /opt/plantuml.jar -tsvg public/*.puml"
   },
