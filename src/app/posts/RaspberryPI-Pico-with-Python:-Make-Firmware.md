@@ -30,7 +30,7 @@ you can proceed with the next steps in your project.
 
 ### Create module
 
-Create a new file named`main.py` within the `$MICROPYTHON_PATH/ports/rp2/modules` directory. This is a file in which you
+Create a new file named `main.py` within the `$MICROPYTHON_PATH/ports/rp2/modules` directory. This is a file in which you
 can write your own script. As example, I will use the following snippet:
 
 ```python

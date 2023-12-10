@@ -1,21 +1,14 @@
 ## Introduction
 
-The Raspberry Pico is a microcontroller board developed by the Raspberry Pi Foundation. It's a departure from the
-traditional Raspberry Pi single-board computers. The Raspberry Pico is designed specifically for microcontroller
-applications.
+The Raspberry Pico, developed by the Raspberry Pi Foundation, is a specialized microcontroller board designed for a variety of applications. Unlike traditional Raspberry Pi single-board computers, it caters specifically to the needs of microcontroller projects, providing a compact and versatile platform for both beginners and experienced developers.
 
 Key features of the Raspberry Pico include:
 
-1. Microcontroller Unit (MCU): The Pico is built around the RP2040 microcontroller. This microcontroller is dual-core
-   ARM Cortex-M0+ based, providing a balance between performance and power efficiency.
-2. GPIO Pins: The board includes 26 programmable General Purpose Input/Output (GPIO) pins, allowing users to connect and
-   control various external devices and sensors.
-3. Peripherals: It has a range of peripherals, including SPI, I2C, UART, PWM, and more, making it versatile for
-   interfacing with other hardware components.
-4. Programmability: The Raspberry Pico can be programmed using MicroPython, a lightweight implementation of Python
-   for microcontrollers. It also supports C and other languages.
-5. Low-Cost and Compact Design: The Pico is relatively low-cost compared to traditional Raspberry Pi SBCs and is
-   designed to be compact, making it suitable for embedded projects and applications with space constraints.
+1. **RP2040 MCU:** Pico features a dual-core ARM Cortex-M0+ for balanced performance and power efficiency.
+2. **26 GPIO Pins:** Equipped for easy connection and control of external devices and sensors.
+3. **Versatile Peripherals:** Supports SPI, I2C, UART, PWM, and more for diverse hardware interfacing.
+4. **Multi-Language Support:** Pico is programmable in MicroPython, C, and other languages.
+5. **Cost-Effective, Compact:** Pico is budget-friendly and designed for space-constrained embedded projects.
 
 The Raspberry Pico is commonly used in projects that require the functionality of a microcontroller, such as
 robotics, embedded systems, and various DIY electronics projects. It provides an affordable and accessible platform for
@@ -24,25 +17,23 @@ learning and experimenting with physical computing.
 ## Setup
 
 Programming the Raspberry Pico involves a few key steps. You can program it using the MicroPython programming
-language. Below is a general guide for programming the Raspberry Pico:
+language.
 
 ### Development Environment
 
-We will utilize PyCharm as our preferred integrated development environment (IDE) for
-programming the Raspberry Pico. PyCharm provides a user-friendly interface, powerful code editing features, and
-seamless integration with Python development, making it an ideal choice for our project.
+We will utilize `PyCharm` as our preferred integrated development environment (IDE) for
+programming the Raspberry Pico. `PyCharm` provides a user-friendly interface, powerful code editing features, and
+seamless integration with Python development.
 
-1. In such case, we will have to install plugin MicroPython. You can download it using
-   following [link](https://plugins.jetbrains.com/plugin/9777-micropython). For other IDE search proper plugins etc.
+You will need to install the MicroPython plugin. It can be downloaded from the following [page](https://plugins.jetbrains.com/plugin/9777-micropython). If you're using a different IDE, be sure to explore and install the appropriate plugins accordingly.
 
 ### Raspberry Pico
 
-1. Download proper MicroPython UF2 file e.g. [Raspberry Pi Pico](https://micropython.org/download/rp2-pico/rp2-pico-latest.uf2).
+Get the right MicroPython UF2 file by downloading it from the official source, such as the [latest Raspberry Pi Pico file](https://micropython.org/download/rp2-pico/rp2-pico-latest.uf2).
 
 ## Write the code
 
-This Python code is a simple example of controlling an LED using the MicroPython programming language on a
-microcontroller.
+Create a new `PyCharm` project and create the main file. Then paste the following snippet. This code is a simple example of controlling an LED using MicroPython.
 
 ```python
 import time
@@ -78,8 +69,9 @@ for 0.5 seconds, and the cycle repeats indefinitely.
 
 ## Flashing
 
-Flashing the Raspberry Pico involves updating the firmware on the microcontroller. Here's a general guide on how to
-flash the Raspberry Pico:
+Flashing the Raspberry Pico involves updating the firmware on the microcontroller.
+
+===TODO===
 
 ### Prerequisites
 
