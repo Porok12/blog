@@ -73,7 +73,6 @@ class ArticleLocal implements ArticleApi {
 
 class ArticleDevto implements ArticleApi {
   private devto(url: string): Promise<Response> {
-    console.debug('NODE_ENV: ' + process.env.NODE_ENV)
     if (!process.env.API_KEY) {
       console.error('Empty API_KEY')
     }

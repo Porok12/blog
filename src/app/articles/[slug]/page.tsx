@@ -61,15 +61,17 @@ const getHostname = () => {
 const components: MDXRemoteProps['components'] = {
   img: (props: any) => {
     return (
-      <div className="relative min-h-[300px]">
+      <div className="relative h-[250px] sm:h-[300px] md:h-[600px]">
         {/*height and width are part of the props, so they get automatically passed here with {...props}*/}
         <Image
           {...props}
           fill
-          style={{ objectFit: 'contain' }}
+          style={{
+            objectFit: 'contain',
+            margin: 0,
+          }}
           loading="lazy"
-          alt="..."
-          className="rounded"
+          alt="image"
         />
       </div>
     )
