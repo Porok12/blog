@@ -45,6 +45,8 @@ export const generateStaticParams = async () => {
 }
 
 const getData = async (slug: string) => {
+  console.debug('Generated page for /articles/' + slug)
+
   return await ArticleApi.article(slug.toString())
 }
 

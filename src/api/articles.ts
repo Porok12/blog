@@ -142,8 +142,9 @@ class ArticleDevto implements ArticleApi {
     })
 
     try {
+      const json = await response.json()
       return {
-        ...(await response.json()),
+        ...json,
         body_html: undefined,
         user: undefined,
       }
