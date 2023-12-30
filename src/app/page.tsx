@@ -4,6 +4,11 @@ import { default as ArticleApi, IArticle } from '@/api/articles'
 import Article from '@/app/components/Article'
 import Border from '@/app/components/Border'
 
+// export async function getStaticProps() {
+//   const articles = await ArticleApi.articles()
+//   return { props: { articles } }
+// }
+
 const getData = async () => {
   try {
     return await ArticleApi.articles()
@@ -12,6 +17,10 @@ const getData = async () => {
     return []
   }
 }
+
+// type Props = {
+//   articles: IArticle[]
+// }
 
 const Page = async () => {
   unstable_setRequestLocale('en')

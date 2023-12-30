@@ -24,6 +24,7 @@ import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 export const generateStaticParams = async () => {
   const articles: string[] = []
+
   // try {
   //     const pathToPosts = path.join("src", "app", "posts");
   //     posts = fs.readdirSync(pathToPosts)
@@ -32,9 +33,9 @@ export const generateStaticParams = async () => {
   // } catch (e) {
   //     console.error(e);
   // }
-  ;(await ArticleApi.articles()).forEach((article) =>
-    articles.push(article.id.toString()),
-  )
+
+  const fetchedArticles = await ArticleApi.articles()
+  fetchedArticles.forEach((article) => articles.push(article.id.toString()))
 
   console.debug('Generated params for /articles/[slug]: ' + articles.join(', '))
 
@@ -54,7 +55,7 @@ const getHostname = () => {
   } else if (process.env.NEXT_PUBLIC_HOST_URL) {
     hostname = process.env.NEXT_PUBLIC_HOST_URL
   }
-  console.debug('hostname: ' + hostname)
+  // console.debug('hostname: ' + hostname)
   return hostname
 }
 

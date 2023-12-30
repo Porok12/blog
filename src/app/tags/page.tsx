@@ -6,6 +6,27 @@ import Chips from '@/app/components/Chips'
 import CustomLink from '@/app/components/CustomLink'
 import { default as TagApi } from '@/api/tags'
 
+// export async function generateStaticParams() {
+//   const tags = await TagApi.tags()
+//   const countedTags = tags.reduce(
+//     (acc, curr) => {
+//       const index = acc.findIndex((tag) => tag.name === curr)
+//       if (index >= 1) {
+//         acc[index].count += 1
+//         return acc
+//       } else {
+//         return [...acc, { name: curr, count: 1 }]
+//       }
+//     },
+//     [] as { name: string; count: number }[],
+//   )
+//   return {
+//     props: {
+//       tags: countedTags.sort((a, b) => b.count - a.count),
+//     },
+//   }
+// }
+
 const getData = async () => {
   const tags = await TagApi.tags()
   const countedTags = tags.reduce(
@@ -23,7 +44,11 @@ const getData = async () => {
   return countedTags.sort((a, b) => b.count - a.count)
 }
 
-const Tags: NextPage = async () => {
+// type Props = {
+//   tags: { name: string; count: number }[]
+// }
+
+const Tags = async () => {
   // unstable_setRequestLocale('en')
 
   const tags = await getData()

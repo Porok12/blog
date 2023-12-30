@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 const getData = async () => {
   return fetch('https://dev.to/api/articles?username=porok12', {
     next: { tags: ['articles'] },
+    // cache: 'no-store',
   }).then((response) => response.json())
 }
 

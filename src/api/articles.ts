@@ -1,6 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { retry } from 'ts-retry-promise'
+import { sleep } from '@/app/utils/sleep'
 
 export interface IArticle {
   id: string
@@ -13,6 +15,19 @@ export interface IArticle {
   tag_list: Array<string>
   body_markdown?: string
   cover_image?: string
+}
+
+const debugPromise = async (response: Response): Promise<Response> => {
+  const originalResponse = response.clone()
+  try {
+    const clone = response.clone()
+    await clone.json()
+    return originalResponse
+  } catch (e) {
+    console.debug(`${response.status}: ${response.statusText} - ${new Date()}`)
+    console.debug(await response.text())
+    return originalResponse
+  }
 }
 
 export abstract class ArticleApi {
@@ -72,52 +87,87 @@ class ArticleLocal implements ArticleApi {
 }
 
 class ArticleDevto implements ArticleApi {
-  private devto(url: string): Promise<Response> {
+  private workaroundCache: any = null
+
+  private async devto(url: string): Promise<Response> {
     if (!process.env.API_KEY) {
       console.error('Empty API_KEY')
     }
-    return fetch('https://dev.to/api/' + url, {
+
+    await sleep(Math.ceil(Math.random() * 5000))
+
+    const { signal } = new AbortController()
+    const response = await fetch('https://dev.to/api/' + url, {
       headers: {
         accept: 'application/vnd.forem.api-v1+json',
         'api-key': process.env.API_KEY,
       },
       next: { tags: ['articles'] },
+      // cache: 'no-store', Turns to dynamic page
+      signal,
     })
+
+    // if (this.workaroundCache) {
+    //   return this.workaroundCache
+    // }
+    // this.workaroundCache = response
+
+    return response
   }
 
   async articles(): Promise<IArticle[]> {
-    return await this.devto('articles/me')
-      .then((response) => response.json())
-      .then((response) => {
-        //console.debug(response)
-        return response
-      })
+    const fetchPromise = () => this.devto('articles/me').then(debugPromise)
+    const response = await retry(fetchPromise, {
+      retries: 3,
+      delay: 500,
+      backoff: 'LINEAR',
+      // logger: (msg) => console.debug(msg),
+    })
+
+    try {
+      return await response.json()
+    } catch (e) {
+      console.error('Error during fetch articles', e)
+      return []
+    }
   }
 
   async article(id: string): Promise<IArticle> {
-    return await this.devto(`articles/${id}`)
-      .then((response) => response.json())
-      .then((response) => ({
-        ...response,
+    const fetchPromise = () => this.devto('articles/me').then(debugPromise)
+    const response = await retry(fetchPromise, {
+      retries: 3,
+      delay: 500,
+      backoff: 'LINEAR',
+      // logger: (msg) => console.debug(msg),
+    })
+
+    try {
+      return {
+        ...(await response.json()),
         body_html: undefined,
         user: undefined,
-      }))
-      .then((response) => {
-        //console.debug(response)
-        return response
-      })
+      }
+    } catch (e) {
+      console.error(`Error during fetch articles by id '${id}'`, e)
+      throw e
+    }
   }
 
   async articlesByTag(tag: string): Promise<IArticle[]> {
-    return await this.devto('articles/me')
-      .then((response) => response.json())
-      .then((response) => {
-        //console.debug(response)
-        return response
-      })
-      .then((articles: Array<IArticle>) =>
-        articles.filter((article) => article.tag_list.includes(tag)),
-      )
+    const fetchPromise = () => this.devto('articles/me').then(debugPromise)
+    const response = await retry(fetchPromise, {
+      retries: 3,
+      delay: 500,
+      backoff: 'LINEAR',
+      // logger: (msg) => console.debug(msg),
+    })
+
+    try {
+      return await response.json()
+    } catch (e) {
+      console.error(`Error during fetch articles by tag '${tag}'`, e)
+      return []
+    }
   }
 }
 
