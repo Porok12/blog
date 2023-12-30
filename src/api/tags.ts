@@ -6,7 +6,7 @@ export abstract class TagApi {
 
 class TagLocal implements TagApi {
   async tags(): Promise<string[]> {
-    return []
+    return [] // TODO
   }
 }
 
