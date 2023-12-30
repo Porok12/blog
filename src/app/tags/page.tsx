@@ -32,7 +32,7 @@ const getData = async () => {
   const countedTags = tags.reduce(
     (acc, curr) => {
       const index = acc.findIndex((tag) => tag.name === curr)
-      if (index >= 1) {
+      if (index >= 0) {
         acc[index].count += 1
         return acc
       } else {
