@@ -7,16 +7,18 @@ interface Props extends PropsWithChildren {
   fullwidth?: boolean
   StartIcon?: any
   EndIcon?: any
+  onClick?: () => void
 }
 
 const Button = (props: Props) => {
-  const { children, fullwidth, StartIcon, EndIcon } = props
+  const { children, fullwidth, StartIcon, EndIcon, onClick } = props
 
   // group flex w-full items-center
 
   return (
     <button
       className={classNames('btn btn-primary', fullwidth ? 'w-full' : '')}
+      onClick={onClick}
     >
       {StartIcon && <StartIcon className="mr-2 h-5 w-5" />}
       {children}

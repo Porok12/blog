@@ -133,7 +133,8 @@ class ArticleDevto implements ArticleApi {
   }
 
   async article(id: string): Promise<IArticle> {
-    const fetchPromise = () => this.devto('articles/me').then(debugPromise)
+    const fetchPromise = () =>
+      this.devto(`articles/me/${id}`).then(debugPromise)
     const response = await retry(fetchPromise, {
       retries: 3,
       delay: 500,

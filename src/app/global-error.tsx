@@ -5,6 +5,7 @@ interface Props {
   reset: () => void
 }
 
+// Overrides layout
 const GlobalError = ({ reset }: Props) => {
   return (
     <html>
